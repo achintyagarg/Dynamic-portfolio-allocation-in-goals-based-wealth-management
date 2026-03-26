@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goal-Based Wealth Engine — RL Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --card: #111827;
+    --border: #1e293b;
+    --accent: #22d3ee;
+    --accent-dim: rgba(34,211,238,0.12);
+    --green: #34d399;
+    --red: #f87171;
+    --amber: #fbbf24;
+    --text: #e2e8f0;
+    --dim: #64748b;
+    --grid: rgba(148,163,184,0.08);
+    --font: 'DM Sans', 'Helvetica Neue', sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+  }
+  .logo {
+    width: 42px; height: 42px; border-radius: 11px;
+    background: linear-gradient(135deg, #22d3ee, #3b82f6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: #fff;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .header .sub { font-size: 11px; color: var(--dim); letter-spacing: 1.5px; text-transform: uppercase; }
+
+  .layout {
+    display: grid; grid-template-columns: 320px 1fr; gap: 24px;
+  }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px;
+  }
+  .card + .card { margin-top: 16px; }
+
+  .card-title {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--dim); margin-bottom: 16px; font-weight: 600;
+  }
+
+  /* Slider inputs */
+  .slider-group { margin-bottom: 20px; }
+  .slider-header {
+    display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;
+  }
+  .slider-label { font-size: 13px; font-weight: 600; }
+  .slider-value { font-family: var(--mono); font-size: 14px; color: var(--accent); font-weight: 600; }
+  .slider-desc { font-size: 11px; color: var(--dim); margin-top: 4px; }
+
+  input[type=range] {
+    width: 100%; height: 4px; border-radius: 2px;
+    accent-color: var(--accent); cursor: pointer;
+    background: var(--border); outline: none;
+    -webkit-appearance: none; appearance: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 16px; height: 16px;
+    border-radius: 50%; background: var(--accent); cursor: pointer;
+  }
+
+  input[type=text] {
+    width: 100%; padding: 10px 12px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text);
+    font-family: var(--font); font-size: 14px; outline: none;
+  }
+  input[type=text]:focus { border-color: var(--accent); }
+
+  /* Run button */
+  .run-btn {
+    width: 100%; padding: 14px 0; margin-top: 16px;
+    background: linear-gradient(135deg, #22d3ee, #3b82f6);
+    border: none; border-radius: 12px;
+    color: #fff; font-size: 15px; font-weight: 700;
+    font-family: var(--font); cursor: pointer;
+    letter-spacing: 0.5px; transition: all 0.2s;
+  }
+  .run-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .run-btn:disabled { background: var(--border); opacity: 0.6; cursor: wait; }
+
+  /* ETF tags */
+  .etf-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .etf-tag {
+    padding: 4px 10px; border-radius: 6px;
+    background: var(--accent-dim); font-size: 12px;
+    font-family: var(--mono); font-weight: 600; color: var(--accent);
+  }
+
+  /* Stats row */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  @media (max-width: 700px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+  .stat { text-align: center; padding: 16px; }
+  .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dim); margin-bottom: 6px; }
+  .stat-value { font-size: 26px; font-weight: 700; font-family: var(--mono); }
+  .stat-sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+  /* Tabs */
+  .tabs {
+    display: flex; gap: 4px; background: var(--card);
+    border-radius: 12px; padding: 4px; border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .tab-btn {
+    flex: 1; padding: 10px 0; background: transparent;
+    border: 1px solid transparent; border-radius: 8px;
+    color: var(--dim); font-size: 13px; font-weight: 600;
+    font-family: var(--font); cursor: pointer; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: rgba(34,211,238,0.06); }
+  .tab-btn.active {
+    background: var(--accent-dim);
+    border-color: rgba(34,211,238,0.2);
+    color: var(--accent);
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Chart containers */
+  .chart-box { position: relative; width: 100%; height: 380px; margin-bottom: 16px; }
+
+  /* Table */
+  .rebalance-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px; font-family: var(--mono);
+  }
+  .rebalance-table thead tr { border-bottom: 2px solid var(--border); }
+  .rebalance-table th {
+    padding: 10px 8px; text-align: right; color: var(--dim);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+  }
+  .rebalance-table td { padding: 10px 8px; text-align: right; }
+  .rebalance-table tbody tr { border-bottom: 1px solid var(--border); }
+
+  .portfolio-badge {
+    padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    display: inline-block;
+  }
+
+  .note-box {
+    margin-top: 16px; padding: 12px 16px; background: var(--bg);
+    border-radius: 10px; font-size: 13px; color: var(--dim); line-height: 1.6;
+  }
+
+  /* Heatmap */
+  .heatmap-wrap { display: flex; gap: 20px; }
+  .heatmap-grid { display: flex; flex-direction: column; gap: 1px; }
+  .heatmap-row { display: flex; gap: 1px; }
+  .heatmap-cell { border-radius: 2px; opacity: 0.85; }
+  .heatmap-legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .heatmap-legend-dot { width: 14px; height: 14px; border-radius: 3px; }
+
+  /* Recommendation */
+  .reco {
+    border-left: 4px solid var(--green); margin-top: 16px;
+  }
+  .reco h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .reco p { font-size: 13px; color: var(--dim); line-height: 1.6; }
+
+  /* Toggle */
+  .toggle-header {
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; user-select: none;
+  }
+  .toggle-arrow {
+    font-size: 18px; color: var(--dim); transition: transform 0.2s;
+  }
+
+  .placeholder {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 400px; flex-direction: column; gap: 16px;
+  }
+  .placeholder-icon { font-size: 48px; opacity: 0.2; }
+  .placeholder-text { color: var(--dim); font-size: 15px; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  .fade-up { animation: fadeUp 0.5s ease both; }
+
+  .footer {
+    text-align: center; font-size: 11px; color: var(--dim);
+    letter-spacing: 0.5px; margin-top: 32px;
+  }
+
+  .dist-legend { display: flex; gap: 24px; justify-content: center; margin-top: 12px; }
+  .dist-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--dim); }
+  .dist-legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+
+  .overflow-x { overflow-x: auto; }
+
+  .right-panel > * + * { margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">₿</div>
+    <div>
+      <h1>Goal-Based Wealth Engine</h1>
+      <div class="sub">Reinforcement Learning · Dynamic Portfolio Optimization</div>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+      <div class="card">
+        <div class="card-title">Client Profile</div>
+
+        <div class="slider-group">
+          <label class="slider-label" style="display:block;margin-bottom:6px;">Name</label>
+          <input type="text" id="clientName" value="Your name here">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Initial Wealth</span>
+            <span class="slider-value" id="W0Val">$50,000</span>
+          </div>
+          <input type="range" id="W0" min="5000" max="500000" step="5000" value="50000">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Target Goal</span>
+            <span class="slider-value" id="GVal">$200,000</span>
+          </div>
+          <input type="range" id="G" min="10000" max="2000000" step="10000" value="200000">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Horizon (years)</span>
+            <span class="slider-value" id="TVal">10</span>
+          </div>
+          <input type="range" id="T" min="1" max="30" step="1" value="10">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Annual Contribution</span>
+            <span class="slider-value" id="contribVal">$10,000</span>
+          </div>
+          <input type="range" id="contrib" min="0" max="100000" step="1000" value="10000">
+        </div>
+      </div>
+
+      <!-- RL Settings -->
+      <div class="card">
+        <div class="toggle-header" onclick="toggleAdvanced()">
+          <div class="card-title" style="margin-bottom:0">RL Settings</div>
+          <span class="toggle-arrow" id="advArrow">▾</span>
+        </div>
+        <div id="advPanel" style="display:none;margin-top:16px;">
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-label">Episodes</span>
+              <span class="slider-value" id="epVal">3000</span>
+            </div>
+            <input type="range" id="episodes" min="500" max="10000" step="500" value="3000">
+            <div class="slider-desc">More = better learning, slower</div>
+          </div>
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-label">Learning Rate (α)</span>
+              <span class="slider-value" id="alphaVal">0.10</span>
+            </div>
+            <input type="range" id="alpha" min="0.01" max="0.30" step="0.01" value="0.10">
+            <div class="slider-desc">How fast the model adapts</div>
+          </div>
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-label">Discount (γ)</span>
+              <span class="slider-value" id="gammaVal">0.95</span>
+            </div>
+            <input type="range" id="gamma" min="0.80" max="0.99" step="0.01" value="0.95">
+            <div class="slider-desc">Long-term vs short-term focus</div>
+          </div>
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-label">Exploration (ε)</span>
+              <span class="slider-value" id="epsVal">0.10</span>
+            </div>
+            <input type="range" id="eps" min="0.01" max="0.20" step="0.01" value="0.10">
+            <div class="slider-desc">How often the model experiments</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="run-btn" id="runBtn" onclick="runOptimization()">▶  Run Optimization</button>
+
+      <div class="card" style="padding:16px;margin-top:16px;">
+        <div class="card-title" style="margin-bottom:10px">ETF Universe</div>
+        <div class="etf-tags">
+          <span class="etf-tag">VOO</span>
+          <span class="etf-tag">QQQ</span>
+          <span class="etf-tag">VXUS</span>
+          <span class="etf-tag">BND</span>
+          <span class="etf-tag">GLD</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel" id="rightPanel">
+      <div class="card placeholder" id="placeholder">
+        <div class="placeholder-icon">📊</div>
+        <div class="placeholder-text">Configure parameters and run the optimization</div>
+      </div>
+
+      <div id="resultsArea" style="display:none;">
+        <!-- Stats -->
+        <div class="stats-row fade-up" id="statsRow">
+          <div class="card stat">
+            <div class="stat-label">Success Rate</div>
+            <div class="stat-value" id="statSuccess">—</div>
+          </div>
+          <div class="card stat">
+            <div class="stat-label">Mean Terminal</div>
+            <div class="stat-value" id="statMean" style="color:var(--accent)">—</div>
+          </div>
+          <div class="card stat">
+            <div class="stat-label">Median Terminal</div>
+            <div class="stat-value" id="statMedian" style="color:var(--accent)">—</div>
+          </div>
+          <div class="card stat">
+            <div class="stat-label">Verdict</div>
+            <div class="stat-value" id="statVerdict">—</div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+          <button class="tab-btn" onclick="switchTab('rebalance',this)">Rebalance</button>
+          <button class="tab-btn" onclick="switchTab('distribution',this)">Distribution</button>
+          <button class="tab-btn" onclick="switchTab('heatmap',this)">Policy Map</button>
+        </div>
+
+        <!-- Tab: Overview -->
+        <div class="tab-content active card" id="tab-overview">
+          <h3 style="font-size:16px;font-weight:600;margin-bottom:20px;" id="overviewTitle">Wealth Trajectory</h3>
+          <div class="chart-box"><canvas id="wealthChart"></canvas></div>
+          <div class="note-box">This chart shows one realized wealth path under the RL strategy. The dashed line is the target goal. If the path stays above it, the client is on track.</div>
+        </div>
+
+        <!-- Tab: Rebalance -->
+        <div class="tab-content card" id="tab-rebalance">
+          <h3 style="font-size:16px;font-weight:600;margin-bottom:20px;">Annual Rebalancing Schedule</h3>
+          <div class="overflow-x"><table class="rebalance-table" id="rebalanceTable"></table></div>
+        </div>
+
+        <!-- Tab: Distribution -->
+        <div class="tab-content card" id="tab-distribution">
+          <h3 style="font-size:16px;font-weight:600;margin-bottom:20px;">Terminal Wealth Distribution (3,000 simulations)</h3>
+          <div class="chart-box"><canvas id="distChart"></canvas></div>
+          <div class="dist-legend">
+            <div class="dist-legend-item"><div class="dist-legend-dot" style="background:rgba(34,211,238,0.5)"></div> Below goal</div>
+            <div class="dist-legend-item"><div class="dist-legend-dot" style="background:#34d399"></div> Goal achieved</div>
+          </div>
+          <div class="note-box">Each bar shows how often a terminal wealth outcome occurred. Green bars = goal met. Wider spread = more uncertainty.</div>
+        </div>
+
+        <!-- Tab: Heatmap -->
+        <div class="tab-content card" id="tab-heatmap">
+          <h3 style="font-size:16px;font-weight:600;margin-bottom:20px;">RL Policy Decision Map</h3>
+          <div class="heatmap-wrap">
+            <div style="flex:1;">
+              <div style="display:flex;align-items:flex-end;gap:4px;">
+                <div style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;color:var(--dim);text-align:center;">Wealth State (Low → High)</div>
+                <div>
+                  <div id="heatmapGrid"></div>
+                  <div style="font-size:11px;color:var(--dim);text-align:center;margin-top:8px;">Year →</div>
+                </div>
+              </div>
+            </div>
+            <div style="min-width:140px;">
+              <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);margin-bottom:12px;">Portfolio Key</div>
+              <div class="heatmap-legend-item"><div class="heatmap-legend-dot" style="background:#3b82f6"></div><span style="font-size:12px;">Very Conservative</span></div>
+              <div class="heatmap-legend-item"><div class="heatmap-legend-dot" style="background:#06b6d4"></div><span style="font-size:12px;">Conservative</span></div>
+              <div class="heatmap-legend-item"><div class="heatmap-legend-dot" style="background:#10b981"></div><span style="font-size:12px;">Balanced</span></div>
+              <div class="heatmap-legend-item"><div class="heatmap-legend-dot" style="background:#f59e0b"></div><span style="font-size:12px;">Growth</span></div>
+              <div class="heatmap-legend-item"><div class="heatmap-legend-dot" style="background:#ef4444"></div><span style="font-size:12px;">Aggressive</span></div>
+            </div>
+          </div>
+          <div class="note-box">This map shows the RL agent's preferred portfolio at each combination of time and wealth level. Red/orange at low wealth = catching up aggressively. Blue at high wealth = preserving gains.</div>
+        </div>
+
+        <!-- Recommendation -->
+        <div class="card reco" id="recoCard" style="display:none;">
+          <h3 id="recoTitle"></h3>
+          <p id="recoText"></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">GOAL-BASED WEALTH ENGINE · RL-OPTIMIZED DYNAMIC PORTFOLIOS · VOO · QQQ · VXUS · BND · GLD</div>
+</div>
+
+<script>
+// ── Data ───────────────────────────────────────────────────
+const ACTIONS = [
+  { name:"Very Conservative", weights:[0.10,0.00,0.10,0.70,0.10], color:"#3b82f6" },
+  { name:"Conservative",      weights:[0.20,0.05,0.15,0.50,0.10], color:"#06b6d4" },
+  { name:"Balanced",          weights:[0.30,0.10,0.20,0.30,0.10], color:"#10b981" },
+  { name:"Growth",            weights:[0.40,0.20,0.20,0.10,0.10], color:"#f59e0b" },
+  { name:"Aggressive",        weights:[0.45,0.30,0.20,0.00,0.05], color:"#ef4444" },
+];
+
+const HIST_RET = [
+  [0.0138,-0.0113,-0.0401,0.0055,-0.1050],
+  [0.1196,0.0698,0.0458,0.0265,0.0860],
+  [0.2183,0.3278,0.2738,-0.0002,0.1340],
+  [-0.0438,-0.0028,-0.1416,0.0001,-0.0150],
+  [0.3149,0.3880,0.2188,0.0872,0.1810],
+  [0.1846,0.4868,0.0789,-0.0164,-0.0340],
+  [-0.1834,-0.3280,-0.1572,-0.1302,-0.0060],
+  [0.2646,0.5498,0.1576,0.0572,0.1310],
+  [0.2506,0.2684,0.0787,0.0145,0.2720],
+  [0.1068,0.0950,0.0535,0.0341,0.0530],
+];
+
+function sampleRet(){ return HIST_RET[Math.floor(Math.random()*HIST_RET.length)]; }
+function portRet(ai){ const w=ACTIONS[ai].weights, r=sampleRet(); return w.reduce((s,wi,i)=>s+wi*r[i],0); }
+
+const fmt = v => '$'+v.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});
+const fmtK = v => v>=1e6?'$'+(v/1e6).toFixed(1)+'M':'$'+(v/1000).toFixed(0)+'k';
+const pct = v => (v*100).toFixed(1)+'%';
+
+// ── Slider live updates ────────────────────────────────────
+const sliders = [
+  ['W0','W0Val',v=>fmt(+v)],
+  ['G','GVal',v=>fmt(+v)],
+  ['T','TVal',v=>v],
+  ['contrib','contribVal',v=>fmt(+v)],
+  ['episodes','epVal',v=>v],
+  ['alpha','alphaVal',v=>(+v).toFixed(2)],
+  ['gamma','gammaVal',v=>(+v).toFixed(2)],
+  ['eps','epsVal',v=>(+v).toFixed(2)],
+];
+sliders.forEach(([id,valId,fn])=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('input',()=>{ document.getElementById(valId).textContent=fn(el.value); });
+});
+
+function toggleAdvanced(){
+  const p=document.getElementById('advPanel');
+  const a=document.getElementById('advArrow');
+  if(p.style.display==='none'){ p.style.display='block'; a.style.transform='rotate(180deg)'; }
+  else{ p.style.display='none'; a.style.transform='rotate(0)'; }
+}
+
+function switchTab(tabId, btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+tabId).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── RL Engine ──────────────────────────────────────────────
+let wealthChart=null, distChart=null;
+
+function runOptimization(){
+  const btn=document.getElementById('runBtn');
+  btn.disabled=true; btn.textContent='⏳ Training Agent...';
+
+  setTimeout(()=>{
+    const W0=+document.getElementById('W0').value;
+    const G=+document.getElementById('G').value;
+    const T=+document.getElementById('T').value;
+    const contribution=+document.getElementById('contrib').value;
+    const episodes=+document.getElementById('episodes').value;
+    const alpha=+document.getElementById('alpha').value;
+    const gamma=+document.getElementById('gamma').value;
+    const epsilon=+document.getElementById('eps').value;
+    const clientName=document.getElementById('clientName').value;
+
+    const nBins=20, nAct=ACTIONS.length;
+    const wMax=Math.max(G*2,W0*2);
+    const bins=Array.from({length:nBins},(_,i)=>(i*wMax)/(nBins-1));
+    const toState=w=>{let s=0;for(let i=0;i<nBins;i++){if(w>=bins[i])s=i;}return Math.min(Math.max(s,0),nBins-1);};
+
+    // Q-table
+    const Q=Array.from({length:T+1},()=>Array.from({length:nBins},()=>new Float64Array(nAct)));
+    const reward=(w,yr)=>{ if(yr===T) return w>=G?100:-100*(G-w)/G; return 10*(w/G); };
+
+    for(let ep=0;ep<episodes;ep++){
+      let w=W0;
+      for(let y=0;y<T;y++){
+        const s=toState(w);
+        let a;
+        if(Math.random()<epsilon) a=Math.floor(Math.random()*nAct);
+        else{ a=0; let mx=Q[y][s][0]; for(let i=1;i<nAct;i++){if(Q[y][s][i]>mx){mx=Q[y][s][i];a=i;}} }
+        const r=portRet(a);
+        const nw=Math.max(w*(1+r)+contribution,0);
+        const ns=toState(nw);
+        const rw=reward(nw,y+1);
+        let mxNext=Q[y+1][ns][0]; for(let i=1;i<nAct;i++){if(Q[y+1][ns][i]>mxNext)mxNext=Q[y+1][ns][i];}
+        Q[y][s][a]+=alpha*(rw+gamma*mxNext-Q[y][s][a]);
+        w=nw;
+      }
+    }
+
+    // Policy
+    const policy=Q.slice(0,T).map(row=>row.map(cell=>{let a=0,mx=cell[0];for(let i=1;i<nAct;i++){if(cell[i]>mx){mx=cell[i];a=i;}}return a;}));
+
+    // Single path
+    let w=W0;
+    const pathYears=[0], pathWealth=[W0];
+    const rebalance=[];
+    for(let y=0;y<T;y++){
+      const s=toState(w);
+      const a=policy[y][s];
+      const r=portRet(a);
+      const nw=Math.max(w*(1+r)+contribution,0);
+      rebalance.push({year:y+1,begin:w,ai:a,weights:ACTIONS[a].weights,ret:r,end:nw});
+      pathYears.push(y+1); pathWealth.push(nw);
+      w=nw;
+    }
+
+    // Monte Carlo
+    const nTest=3000, terminals=[];
+    for(let sim=0;sim<nTest;sim++){
+      let ww=W0;
+      for(let y=0;y<T;y++){const s=toState(ww);const a=policy[y][s];ww=Math.max(ww*(1+portRet(a))+contribution,0);}
+      terminals.push(ww);
+    }
+    terminals.sort((a,b)=>a-b);
+    const successProb=terminals.filter(t=>t>=G).length/nTest;
+    const mean=terminals.reduce((a,b)=>a+b,0)/nTest;
+    const median=terminals[Math.floor(nTest/2)];
+
+    // ── Render results ──
+    document.getElementById('placeholder').style.display='none';
+    document.getElementById('resultsArea').style.display='block';
+
+    // Stats
+    const sc=document.getElementById('statSuccess');
+    sc.textContent=pct(successProb);
+    sc.style.color=successProb>=0.65?'var(--green)':successProb>=0.4?'var(--amber)':'var(--red)';
+    document.getElementById('statMean').textContent=fmtK(mean);
+    document.getElementById('statMedian').textContent=fmtK(median);
+    const sv=document.getElementById('statVerdict');
+    sv.textContent=successProb>=0.85?'Strong':successProb>=0.65?'Fair':successProb>=0.4?'At Risk':'Low';
+    sv.style.color=successProb>=0.65?'var(--green)':successProb>=0.4?'var(--amber)':'var(--red)';
+
+    // Overview chart
+    document.getElementById('overviewTitle').textContent='Wealth Trajectory — '+clientName;
+    if(wealthChart) wealthChart.destroy();
+    const ctx1=document.getElementById('wealthChart').getContext('2d');
+    wealthChart=new Chart(ctx1,{
+      type:'line',
+      data:{
+        labels:pathYears,
+        datasets:[{
+          label:'Wealth',
+          data:pathWealth,
+          borderColor:'#22d3ee',
+          backgroundColor:'rgba(34,211,238,0.1)',
+          fill:true,
+          tension:0.3,
+          pointRadius:5,
+          pointBackgroundColor:'#22d3ee',
+          borderWidth:2.5,
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{
+          legend:{display:false},
+          annotation:{}
+        },
+        scales:{
+          x:{title:{display:true,text:'Year',color:'#64748b'},ticks:{color:'#64748b'},grid:{color:'rgba(148,163,184,0.08)'}},
+          y:{title:{display:true,text:'Wealth ($)',color:'#64748b'},ticks:{color:'#64748b',callback:v=>fmtK(v)},grid:{color:'rgba(148,163,184,0.08)'}},
+        }
+      },
+      plugins:[{
+        id:'goalLine',
+        afterDraw(chart){
+          const yScale=chart.scales.y;
+          const yPos=yScale.getPixelForValue(G);
+          if(yPos>=chart.chartArea.top&&yPos<=chart.chartArea.bottom){
+            const ctx=chart.ctx;
+            ctx.save();
+            ctx.strokeStyle='#fbbf24';ctx.lineWidth=2;ctx.setLineDash([8,5]);
+            ctx.beginPath();ctx.moveTo(chart.chartArea.left,yPos);ctx.lineTo(chart.chartArea.right,yPos);ctx.stroke();
+            ctx.fillStyle='#fbbf24';ctx.font='12px "DM Sans"';ctx.textAlign='right';
+            ctx.fillText('Goal: '+fmtK(G),chart.chartArea.right,yPos-8);
+            ctx.restore();
+          }
+        }
+      }]
+    });
+
+    // Rebalance table
+    let html='<thead><tr>';
+    ['Yr','Begin $','Portfolio','VOO','QQQ','VXUS','BND','GLD','Return','End $'].forEach(h=>{html+='<th>'+h+'</th>';});
+    html+='</tr></thead><tbody>';
+    rebalance.forEach(r=>{
+      html+='<tr>';
+      html+='<td>'+r.year+'</td>';
+      html+='<td>'+fmtK(r.begin)+'</td>';
+      html+='<td><span class="portfolio-badge" style="background:'+ACTIONS[r.ai].color+'22;color:'+ACTIONS[r.ai].color+'">'+ACTIONS[r.ai].name+'</span></td>';
+      r.weights.forEach(wt=>{html+='<td style="color:'+(wt>0?'var(--text)':'var(--dim)')+'">'+(wt*100).toFixed(0)+'%</td>';});
+      html+='<td style="color:'+(r.ret>=0?'var(--green)':'var(--red)')+'">'+(r.ret*100).toFixed(1)+'%</td>';
+      html+='<td style="font-weight:600">'+fmtK(r.end)+'</td>';
+      html+='</tr>';
+    });
+    html+='</tbody>';
+    document.getElementById('rebalanceTable').innerHTML=html;
+
+    // Distribution chart
+    const histMin=terminals[0], histMax=terminals[terminals.length-1];
+    const nHistBins=40, histStep=(histMax-histMin)/nHistBins||1;
+    const histLabels=[], histData=[], histColors=[];
+    for(let i=0;i<nHistBins;i++){
+      const lo=histMin+i*histStep;
+      histLabels.push(fmtK(lo));
+      histColors.push(lo>=G?'#34d399':'rgba(34,211,238,0.5)');
+      let cnt=0;
+      for(const t of terminals){const idx=Math.min(Math.floor((t-histMin)/histStep),nHistBins-1);if(idx===i)cnt++;}
+      histData.push(cnt);
+    }
+    if(distChart) distChart.destroy();
+    const ctx2=document.getElementById('distChart').getContext('2d');
+    distChart=new Chart(ctx2,{
+      type:'bar',
+      data:{
+        labels:histLabels,
+        datasets:[{data:histData,backgroundColor:histColors,borderRadius:3}]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{
+          x:{ticks:{color:'#64748b',maxTicksLimit:8,maxRotation:30},grid:{display:false}},
+          y:{ticks:{color:'#64748b'},grid:{color:'rgba(148,163,184,0.08)'}},
+        }
+      }
+    });
+
+    // Heatmap
+    const colors=['#3b82f6','#06b6d4','#10b981','#f59e0b','#ef4444'];
+    const cellSize=Math.min(Math.max(Math.floor(500/Math.max(T,nBins)),12),28);
+    let gridHTML='';
+    for(let b=nBins-1;b>=0;b--){
+      gridHTML+='<div class="heatmap-row">';
+      for(let y=0;y<T;y++){
+        const a=policy[y][b];
+        gridHTML+='<div class="heatmap-cell" style="width:'+cellSize+'px;height:'+cellSize+'px;background:'+colors[a]+'"></div>';
+      }
+      gridHTML+='</div>';
+    }
+    document.getElementById('heatmapGrid').innerHTML=gridHTML;
+
+    // Recommendation
+    const rc=document.getElementById('recoCard'); rc.style.display='block';
+    rc.style.borderLeftColor=successProb>=0.65?'var(--green)':successProb>=0.4?'var(--amber)':'var(--red)';
+    document.getElementById('recoTitle').textContent=
+      successProb>=0.85?'✅ Strong Outlook':successProb>=0.65?'Reasonable — Monitor Regularly':successProb>=0.4?'!!! Goal At Risk':'!!!!! Low Probability of Success';
+    document.getElementById('recoText').textContent=
+      successProb>=0.85?clientName+"'s goal of "+fmt(G)+" over "+T+" years has a strong probability of achievement. The RL agent dynamically adjusts risk based on wealth trajectory."
+      :successProb>=0.65?clientName+" has a reasonable chance of reaching "+fmt(G)+". Consider periodic monitoring and potential contribution increases to improve odds."
+      :successProb>=0.4?clientName+"'s goal is at risk. Consider increasing annual contributions, extending the time horizon, or adjusting the target."
+      :"Under current assumptions, "+clientName+"'s goal has a low probability of success. Significant changes to savings rate, timeline, or target are recommended.";
+
+    btn.disabled=false; btn.textContent='▶  Run Optimization';
+  },50);
+}
+</script>
+</body>
+</html>
