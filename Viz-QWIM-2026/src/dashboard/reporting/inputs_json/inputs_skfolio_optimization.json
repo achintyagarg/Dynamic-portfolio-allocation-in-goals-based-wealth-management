@@ -1,0 +1,15 @@
+{
+  "time_period": "3Y",
+  "method1": {
+    "category": "basic",
+    "type": "equal_weighted",
+    "objective": "N/A",
+    "risk_aversion": 1.0
+  },
+  "method2": {
+    "category": "convex",
+    "type": "mean_risk",
+    "objective": "N/A",
+    "risk_aversion": 1.0
+  }
+}

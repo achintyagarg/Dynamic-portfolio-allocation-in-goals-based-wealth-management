@@ -1,0 +1,90 @@
+{
+  "single_or_couple": "Single",
+  "personal_info": {
+    "primary": {
+      "name": "Primary Investor",
+      "age_current": 0,
+      "age_retirement": 0,
+      "age_income_starting": 0,
+      "status_marital": "",
+      "gender": "",
+      "tolerance_risk": "",
+      "state": "",
+      "code_zip": ""
+    },
+    "partner": {
+      "name": "Partner Investor",
+      "age_current": 0,
+      "age_retirement": 0,
+      "age_income_starting": 0,
+      "status_marital": "",
+      "gender": "",
+      "tolerance_risk": "",
+      "state": "",
+      "code_zip": ""
+    }
+  },
+  "assets": {
+    "primary": {
+      "taxable": 0.0,
+      "tax_deferred": 0.0,
+      "tax_free": 0.0,
+      "total": 0.0
+    },
+    "partner": {
+      "taxable": 0.0,
+      "tax_deferred": 0.0,
+      "tax_free": 0.0,
+      "total": 0.0
+    },
+    "combined": {
+      "taxable": 0.0,
+      "tax_deferred": 0.0,
+      "tax_free": 0.0,
+      "total": 0.0
+    }
+  },
+  "goals": {
+    "primary": {
+      "essential": 0.0,
+      "important": 0.0,
+      "aspirational": 0.0,
+      "total": 0.0
+    },
+    "partner": {
+      "essential": 0.0,
+      "important": 0.0,
+      "aspirational": 0.0,
+      "total": 0.0
+    },
+    "combined": {
+      "essential": 0.0,
+      "important": 0.0,
+      "aspirational": 0.0,
+      "total": 0.0
+    }
+  },
+  "income": {
+    "primary": {
+      "social_security": 0.0,
+      "pension": 0.0,
+      "annuity_existing": 0.0,
+      "other": 0.0,
+      "total": 0.0
+    },
+    "partner": {
+      "social_security": 0.0,
+      "pension": 0.0,
+      "annuity_existing": 0.0,
+      "other": 0.0,
+      "total": 0.0
+    },
+    "combined": {
+      "social_security": 0.0,
+      "pension": 0.0,
+      "annuity_existing": 0.0,
+      "other": 0.0,
+      "total": 0.0
+    }
+  }
+}

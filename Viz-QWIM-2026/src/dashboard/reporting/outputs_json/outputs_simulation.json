@@ -1,0 +1,17 @@
+{
+  "summary_statistics": {
+    "num_scenarios": 1000,
+    "horizon_days": 252,
+    "initial_value": 100.0,
+    "mean_terminal_value": 105.86014887155919,
+    "median_terminal_value": 105.18524135219292,
+    "std_dev_terminal_value": 11.054083582631437,
+    "percentile_5": 88.68311279382107,
+    "percentile_25": 98.27028298619021,
+    "percentile_75": 112.9526875830012,
+    "percentile_95": 125.17643650127759,
+    "min_terminal_value": 79.4305940140304,
+    "max_terminal_value": 144.18647619753696,
+    "probability_of_loss": 0.312
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "time_period": "All",
+  "start_date": "2012-01-03",
+  "end_date": "2025-03-14",
+  "viz_type": "normalized",
+  "metrics": {
+    "total_return": {
+      "portfolio": 0.9704559446898409,
+      "benchmark": 0.8951368685644855,
+      "difference": 0.07531907612535538
+    },
+    "annualized_return": {
+      "portfolio": 0.052847368602690015,
+      "benchmark": 0.04973643935204719,
+      "difference": 0.0031109292506428243
+    },
+    "volatility": {
+      "portfolio": 0.10381646369780075,
+      "benchmark": 0.4952339377523873,
+      "difference": -0.39141747405458654
+    },
+    "max_drawdown": {
+      "portfolio": -0.26105084129654815,
+      "benchmark": -0.2767200155588367,
+      "difference": 0.015669174262288532
+    },
+    "sharpe_ratio": {
+      "portfolio": 0.3557663714278184,
+      "benchmark": 0.30506189878588086,
+      "difference": 0.05070447264193756
+    },
+    "correlation": 0.19877913187705343,
+    "tracking_error": 0.48538095846326507,
+    "information_ratio": 0.006409252766099739
+  }
+}

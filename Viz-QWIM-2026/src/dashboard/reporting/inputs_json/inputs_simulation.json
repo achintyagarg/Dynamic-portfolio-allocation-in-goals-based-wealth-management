@@ -1,0 +1,11 @@
+{
+  "selected_components": [],
+  "num_scenarios": 1000,
+  "num_days": 252,
+  "start_date": "N/A",
+  "initial_value": 100.0,
+  "distribution_type": "normal",
+  "degrees_of_freedom": 5.0,
+  "rng_type": "pcg64",
+  "seed": 42
+}

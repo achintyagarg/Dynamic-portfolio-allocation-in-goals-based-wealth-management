@@ -1,0 +1,8 @@
+{
+  "time_period": "1Y",
+  "date_range_start": "N/A",
+  "date_range_end": "N/A",
+  "analysis_type": "returns",
+  "rolling_window": "30",
+  "include_benchmark": true
+}

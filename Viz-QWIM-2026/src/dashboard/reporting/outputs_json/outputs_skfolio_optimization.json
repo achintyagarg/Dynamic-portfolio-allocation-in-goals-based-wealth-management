@@ -1,0 +1,18 @@
+{
+  "weights_comparison": [],
+  "statistics_comparison": [],
+  "performance_summary": {
+    "method1": {
+      "label": "Method 1",
+      "annualized_return": 0.0,
+      "volatility": 0.0,
+      "sharpe_ratio": 0.0
+    },
+    "method2": {
+      "label": "Method 2",
+      "annualized_return": 0.0,
+      "volatility": 0.0,
+      "sharpe_ratio": 0.0
+    }
+  }
+}
