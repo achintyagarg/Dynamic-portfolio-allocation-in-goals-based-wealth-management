@@ -1,0 +1,1924 @@
+# Dashboard QWIM 2026
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dashboard-QWIM"
+version = "0.1.0"
+description = "Dashboard for Quantitative Wealth and Investment Management"
+readme = "README.md"
+requires-python = ">=3.12.10, <3.13"
+dependencies = [
+	"actuaflow",	# Modern actuarial pricing library for non-life insurance with GLM-based frequency-severity modeling
+	"aenum",  # Advanced Enumerations (compatible with Python's stdlib Enum), NamedTuples, and NamedConstants
+	"aesara",  # A library for defining, optimizing, and efficiently evaluating mathematical expressions involving multi-dimensional arrays.
+	"ahlive",  # animate your data to life
+	#	"aiedatools",	# efficient, scalable data profiling and visualization. It is designed for data scientists working with Pandas, Polars, and Google BigQuery
+	"aiofiles",	# handling local disk files in asyncio applications.
+	"aiohttp",  # Async http client/server framework (asyncio)
+	"alive-progress",  # A new kind of Progress Bar, with real-time throughput, ETA, and very cool animations!
+	"allure-pytest",  # Allure pytest integration
+	"alphalens-reloaded",  # Performance analysis of predictive (alpha) stock factors
+	"altair",  # Vega-Altair: A declarative statistical visualization library for Python.
+	"annotated-doc",  # Document parameters, class attributes, return types, and variables inline, with Annotated.
+	"annotated-types",  # Reusable constraint types to use with typing.Annotated
+	"any2toon",  # A robust library to convert JSON, YAML, XML, CSV, Avro, Parquet, BSON, and NDJSON to TOON format.
+	"anychange",	# Pure Python asynchronous file watching
+	"anyid",  # A unified Python ID generator library.
+	"apexbase", #	High-performance embedded database with Rust core and Python API
+	#	"api-mocker",	# Production-ready FastAPI mock server with AI-powered generation, scenario-based mocking, smart response matching, enhanced analytics, comprehensive testing framework, advanced mock response management, GraphQL mocking, WebSocket support, enterprise authentication, database integration, and machine learning capabilities.
+	"apitally",  # Simple API monitoring & analytics for REST APIs built with FastAPI, Flask, Django, Starlette, Litestar and BlackSheep.
+	"apitally-serverless",  # Simple API monitoring & analytics for REST APIs running on serverless platforms (e.g. Cloudflare Workers).
+	#	"apitomcp",	# Convert any API documentation into an MCP server
+	"APScheduler",	# In-process task scheduler with Cron-like capabilities
+	"arrow",  # Better dates & times for Python
+	"arrow-wrangler",	# Standardise data manipulation with pyarrow datasets
+	"article-cli",	# CLI tool for managing LaTeX and Typst documents with git integration and Zotero bibliography
+	"articuno",  # Convert Polars or Pandas DataFrames to lists of Pydantic models with schema inference
+	"assert-polars",  # Ergonomic inline validation for Polars DataFrames with pipeable assertions and user-friendly wrappers around native Polars boolean expressions.
+	"async-db-polars",	# High level DB abstraction that uses polars to represent tables in memory.
+	#	"atdd",	# ATDD Platform - Acceptance Test Driven Development toolkit
+	"atio",  # Safe atomic file writer for Pandas, Polars, NumPy, and other data objects
+	"attrs",  # Classes Without Boilerplate
+	"autotsforecast",	# Automated time series forecasting with Chronos-2 foundation model (zero-shot, no training required), per-series model selection, and interpretability.
+	"azapy",  # Financial Portfolio Optimization Algorithms
+	"basicenum",  # Simple(r) enums
+	#	"bbobax",	# BBOBax: Accelerated Black-Box Optimization Benchmark.
+	"bear-lake",  # A lightweight, file-based database built on Polars and Parquet, designed for fast analytics and easy data management.
+	"beautiful-traceback",  # fork of the pretty-traceback repo with simplified development and improvements for better integration with FastAPI, structlog, IPython, pytest, and more
+	"behave",  # behave is behaviour-driven development, Python style
+	"behave-auto-docstring",  # behave_auto_docstring
+	"behave-parallel-runners",  # behave-parallel-runners
+	"behave-html-pretty-formatter",  # Pretty HTML Formatter for Behave
+	"behave-utils",  # Utilities for writing Behave step implementations
+	"behavex",  # Agile testing framework on top of Behave (BDD).
+	"better-coverage",  # Pytest reporter displaying pytest-cov coverage in Jest/Istanbul format with directory tree
+	"better-exceptions",  # Pretty and helpful exceptions, automatically
+	"better-git-of-theseus",	# It provides a fully interactive Web Dashboard powered by Streamlit and Plotly, making it easier than ever to visualize how your code evolves over time.
+	#	"better-regressions",  # Advanced regression methods with sklearn-like interface
+	"bidict", # The bidirectional mapping library for Python.
+	"bigtree",  # Tree Implementation and Methods for Python, integrated with list, dictionary, pandas and polars DataFrame.
+	#	"blueno",	# A platform agnostic Python library for writing declarative data pipelines the bueno way
+	"bocadillo",	# Fast, highly-concurrent and scalable web APIs for everyone
+	"bokeh",  # Interactive plots and applications in the browser from Python
+	"bottleneck",  # Fast NumPy array functions written in C
+	"brand-yml",  # Read brand yaml files, a unified way to store brand information.
+	"bumplot",	# Easily create and customize bump charts (useful when the focus is on comparing relative rankings—who is ahead of whom—rather than the exact magnitude of the differences.)
+	"cacherator",  # A Python library for persistent JSON-based caching of class state and function results.
+	"calgebra",  # A tiny DSL for calendar interval algebra - compose, filter, and query time ranges using set operations.
+	"capsula",  # A Python package to capture command/function execution context for reproducibility.
+	"carthorse",	# Safely creating releases when you change the version number.
+	#	"casual-memory",	# Intelligent semantic memory with conflict detection, classification pipeline, and storage abstraction
+	"catfact",	# Categorical wrangling for Python. Supports both Polars and Pandas. Enables categorical and ordinal scales in plotting tools like Plotnine.
+	#	"causers",  # High-performance statistical operations for Polars DataFrames
+	"Cerberus",  # Lightweight, extensible schema and data validation tool for Pythond ictionaries.
+	"checkedframe",  # A generic dataframe validation library
+	"checkpl",  # Ergonomic inline validation for Polars DataFrames with pipeable assertions and user-friendly wrappers around native Polars boolean expressions.
+	"chiaro",  # Fluent Grammar-of-Graphics in Python
+	"chide",	# Quickly create sample objects from data.
+	"chrysalis-test",	# A metamorphic testing framework that utilizes metamorphic relations.
+	"clarabel",  # Clarabel Conic Interior Point Solver for Rust / Python
+	"cleanengine",  # The Ultimate Data Cleaning & Analysis Toolkit
+	"cleanslay",  # Safe JSON serializer for complex Python objects (Pydantic, Pandas, NumPy, etc.)
+	"clientele",  # Clientele is a different way to build Python API Clients
+	"cli-pybench",  # A pytest-like framework for benchmarking
+	"cloakdata",  # Fast data anonymization with Polars
+	"Clustergram",  # Clustergram - visualization and diagnostics for cluster analysis
+	"clusteval",  # clusteval is a python package for unsupervised cluster validation.
+	"cma",  # CMA-ES, Covariance Matrix Adaptation Evolution Strategy for non-linear numerical optimization in Python
+	"cmaes",  # Lightweight Covariance Matrix Adaptation Evolution Strategy (CMA-ES) implementation for Python 3.
+	"coconut", # Coconut (coconut-lang.org) is a variant of Python that adds on top of Python syntax new features for simple, elegant, Pythonic functional programming.
+	"codearc",	# Mine a Python repo's git history to produce a DuckDB database of all distinct versions of every function/class
+	"colnade", 	# A statically type-safe DataFrame abstraction layer for Python. Colnade replaces string-based column references (pl.col("age")) with typed descriptors (Users.age), so column misspellings, type mismatches, and schema violations are caught by your type checker — before your code runs.
+	"colnade-polars",	# Polars backend adapter for Colnade — a statically type-safe DataFrame abstraction layer for Python.
+	"colocate",  # DataFrame column reordering made simple
+	"colored-traceback",  # Automatically color uncaught exception tracebacks
+	"compress-json",  # The missing Python utility to read and write large compressed JSONs.
+	"conceptual-dictionary",  # A Python dictionary template for storing serializable metadata
+	"condense-json",  # Python function for condensing JSON using replacement strings
+	"configobj",	# Config file reading, writing and validation.
+	"configurator",	#  building a configuration store from one or more layered configuration sources
+	"configplusplus",  # A powerful configuration management library with beautiful display, environment variables and YAML support
+	"conventions-cli",  # Automatically discover and document coding conventions in your codebase
+	"copula",  # A python library for sampling and generating new Data points by multivariate Gaussian copulas.
+	"corbel",  # Lightweight Python library extending dataclasses with serialization, deserialization, validation, and mixins for comparison, hashing, and immutable updates.
+	"coverage",  # Code coverage measurement for Python
+	"coverage-badge",  # Generate coverage badges for Coverage.py.
+	"crepes",  # Conformal classifiers, regressors, and predictive systems (crepes)
+	#	"ctgan",  # Create tabular synthetic data using a conditional GAN
+	"cucumber-expressions",  # Cucumber Expressions - a simpler alternative to Regular Expressions
+	"cucumber-messages",  # Cucumber Messages is a message protocol for representing results and other information from Cucumber.
+	"cucumber-tag-expressions",  # Provides a tag-expression parser and evaluation logic for cucumber/behave
+	"custom-profiler",  # Time and memory profiler
+	"cvxopt",  # Convex optimization package
+	"cvxportfolio",  # Portfolio optimization and back-testing.
+	"cvxpy",  # A domain-specific language for modeling convex optimization problems in Python.
+	"cvxrisk",  # Simple riskengine for cvxpy
+	"cvxsimulator",  # Simple simulator for investors
+	"d3blocks",  # Python package d3blocks.
+	"dacite",  # Simple creation of data classes from dictionaries.
+	"Daffodil",	# Daffodil provides lightweight and fast 2-D dataframes
+	"daffy",  # Function decorators for DataFrame validation - columns, data types, and row-level validation with Pydantic. Supports Pandas, Polars, Modin, and PyArrow.
+	"dantro",  # Handle, transform, and visualize hierarchically structured data
+	"dapter",  # Tool to adapt multiple dataframes to one unique format
+	"darca-exception",  #  exception base class designed to enhance error handling in your projects
+	"darca-log-facility",  # owerful, flexible, and structured logging utility for Python applications.
+	"darts",  # A python library for easy manipulation and forecasting of time series.
+	"dash",  # A Python framework for building reactive web-apps. Developed by Plotly.
+	"dash-prism",  # Prism: Powerful multi-panel workspace manager for Plotly Dash
+	"dask",  # Parallel PyData with Task Scheduling
+	"dataclasses-json",  # Easily serialize dataclasses to and from JSON.
+	"dataclassy",  # A fast and flexible reimplementation of data classes
+	"datacompy",  # Dataframe comparison in Python
+	"datacompy-report",	#Create reports allowing for comparing two DataFrames.
+	"dataframely",  # A declarative, polars-native data frame validation library
+	"datahugger",	# download scientific datasets, software, and code from a large number of repositories based on their DOI (wiki) or URL.
+	"datamodel-code-generator",  # Datamodel Code Generator
+	"datamorphers",  # Flexible framework for transforming Pandas and Polars DataFrames using a modular data pipeline approach.
+	"datar",	# datar is a re-imagining of APIs for data manipulation in python with multiple backends supported. Those APIs are aligned with tidyverse packages in R as much as possible.
+	#	"datasets",	# HuggingFace community-driven open-source library of datasets
+	"datashader",  # Data visualization toolchain based on aggregating into a grid
+	"datason",  # A comprehensive Python package for intelligent serialization that handles complex data types with ease.
+	"dateparser",  # Date parsing library designed to parse dates from HTML pages
+	"dcor",  # dcor: distance correlation and energy statistics in Python.
+	#	"deap",  # Distributed Evolutionary Algorithms in Python
+	#	"deepecho",  # Create sequential synthetic data of mixed types using a GAN.
+	"deeptime",  # Python library for analysis of time series data including dimensionality reduction, clustering, and Markov model estimation.
+	"delta-lens",	# A tool for comparing large datasets using DuckDB
+	#	"denario-update",	# multiagent system designed to be a scientific research assistant. Denario implements AI agents with AG2 and LangGraph, using cmbagent as the research analysis backend.
+	"depcon",  # Convert legacy requirements files to modern pyproject.toml format with full PEP 621 support
+	"dexc",   # Exception formatter
+	"df2tables",  # df2tables: Pandas and Polars DataFrames to Interactive DataTables
+	#	"dfm-python",	# Dynamic Factor Model (DFM) estimation and forecasting in Python
+	"diagram-renderer",  # A comprehensive diagram rendering service supporting Mermaid, PlantUML, and Graphviz diagrams with interactive zoom/pan controls and PNG export
+	"diagrams", 	# Diagrams lets you draw the cloud system architecture in Python code.
+	"dict2dc",  # Helpers to parse dicts, e.g., from JSON parsing, to dataclasses.
+	"dill",  # serialize all of Python
+	"direpack",  # A Python 3 Library for State-of-the-Art Statistical Dimension Reduction Methods
+	#	"distill-json",  # Data Intelligent Structure Token-efficient Interchange for LLMs - Compress JSON for LLM consumption
+	"distfit",  # distfit is a Python library for probability density fitting.
+	"dlt",  # dlt is an open-source python-first scalable data loading library that does not require any backend to run.
+	#	"docling",	# SDK and CLI for parsing PDF, DOCX, HTML, and more, to a unified document representation for powering downstream workflows such as gen AI applications.
+	#	"docling-jobkit",	# Running a distributed job processing documents with Docling.
+	#	"docseer",	# DocSeer: Summarize and understand your documents at a glance.
+	"doublex",	# Powerful test doubles framework for Python
+	"dowhy",	#  causal inference that supports explicit modeling and testing of causal assumptions
+	"downlow",	# A bulk downloader with tenacity and grace
+	"dppd",	# A pythonic dplyr clone
+	"dppd-plotnine",	# Combines plotnine and dppd
+	#	"dspy",  # DSPy is the framework for programming—rather than prompting—language models.
+	"dtaidistance",  # Distance measures for time series (Dynamic Time Warping, fast C implementation)
+	"dtale",  # Web Client for Visualizing Pandas Objects
+	"dtw-python",  # A comprehensive implementation of dynamic time warping (DTW) algorithms.
+	"duckdb",  # DuckDB in-process database
+	"dynaconf",	# The dynamic configurator for your Python Project
+	#	"dynamic-pydantic",	# Dynamic Pydantic is the easiest way to create and validate AI agent tools and databases.
+	"edgy",  # The perfect ORM to work with complex databases
+	#	"eggnest", # EggNest - Monte Carlo financial planning with real tax calculations
+	"empfin",	#  empirical asset pricing models and risk premia estimation
+	"empiricaldist",  # Python library that represents empirical distributions.
+	"empyrical-reloaded",  # empyrical computes performance and risk statistics commonly used in quantitative finance
+	"encor",  # Estimate the autocorrelation time of a time series quickly.
+	#	"engineer-investor-portfolio",	# Open-source portfolio analysis tools for DIY investors and finance enthusiasts. This repository aims to provide a comprehensive suite of tools to analyze and optimize investment portfolios, with an emphasis on transparency, flexibility, and extensibility.
+	"EnhancedPolars",	#	Enhanced utilities for Polars DataFrames, providing pandas-like convenience while maintaining Polars' blazing-fast performance.
+	#	"enlighten",  # Enlighten Progress Bar
+	"enstat",  # Ensemble averages
+	"enum-extension",  # Python library that extends the functionality of the built-in enum module,
+	"enum-mate",  # A lightweight Python library that enhances enum handling with explicit validation, retrieval, and type-conversion methods for safer and more intuitive enum usage.
+	"enum-properties",  # Add properties and method specializations to Python enumeration values with a simple declarative syntax.
+	"enum-with-dict",  # Enum with to_dict method.
+	"enum-tools",  # Tools to expand Python's enum module.
+	"escaping",  # solve the problem of exception handling in a better way
+	"evalica",  # Evalica, your favourite evaluation toolkit.
+	"everysk-orjson",	# Fast, correct Python JSON library supporting dataclasses, datetimes, numpy, big integers, and special floating-point values.
+	#	"evojax",  # EvoJAX: Hardware-accelerated Neuroevolution.
+	#	"evomo",  # EvoMO: Bridging Evolutionary Multiobjective Optimization and GPU Acceleration via Tensorization
+	#	"evopt",  # User Friendly Data-Driven Numerical Optimization and Exploration
+	#	"evosax",  # Evolution Strategies in JAX
+	#	"evox",  # Distributed GPU-accelerated Framework for Scalable Evolutionary Computation
+	"exception-details",  # Get nicely formated exception details
+	"exception-handling-decorator",  # ExceptionHandler: Python library to decorate exception handling.
+	"exceptionite",  # Exception Handling Made Easy
+	"exception-reports",  # Generate an interactive stack trace that includes variable state at each level.
+	"explain-exception",  # Explains Python errors in clear English for beginners.
+	"extended-enum",  # Extends the capabilities of the standard Enum.
+	"ezserialization",  # Simple, easy to use & transparent python objects serialization & deserialization.
+	#	"fabricatio",	#  building LLM applications using an event-based agent structure
+	#	"fabricatio-typst",	#	A Python library for generating, validating and converting academic content using Typst format.
+	"factorio",	# fixtures replacement tool that's been heavily influenced by factory boy. It's intention is to hide irrelevant fields when writing a test.
+	"factorium",	# A quantitative factor analysis library for financial research
+	"faicons",  # An interface to Font-Awesome for use in Shiny.
+	"faker", #  Faker is a Python package that generates fake data for you.
+	#	"fastapi",  # FastAPI framework, high performance, easy to learn, fast to code, ready for production
+	#	"fastapi-errors-plus",	# Universal library for documenting errors in FastAPI endpoints
+	#	"fastapi-exception",  # FastAPI Exception
+	#	"fastapi-exception-responses",  # It generates documentation for OpenAPI and Endpoints starlette HTTPExceptions based on class attributes defined as tuples of status code and detail
+	#	"fastapi-fsp",	# Filter, Sort, and Paginate (FSP) utilities for FastAPI + SQLModel
+	#	"fastapi-fullstack",	# Full-stack FastAPI + Next.js template generator with PydanticAI/LangChain agents, WebSocket streaming, 20+ enterprise integrations, and Logfire/LangSmith observability.
+	#	"fastapi-import-export",	# FastAPI-first import/export utilities that keep your domain model decoupled.
+	#	"fastapi-pretty-errors",  # FastAPI middleware to prettify exceptions using PrettyErrors.
+	#	"fastapi-toolbox",	# Common utilities for FastAPI applications
+	#	"fastapi-users",	# Ready-to-use and customizable users management for FastAPI
+	"fastclasses-json",  # Quickly serialize dataclasses to and from JSON
+	"fastcluster",  # Fast hierarchical clustering routines for R and Python.
+	"fastdateinfer",	# Fast, consensus-based date format inference written in Rust with Python bindings.
+	"fastexcel",  # A fast excel file reader for Python, written in Rust
+	"fastreg",  # Fast sparse regressions
+	"fastscheduler",	# Structured Logging for Python
+	#	"fcmaes",  # A Python 3 gradient-free optimization library.
+	"fdm",	# Estimate derivatives with finite differences
+	#	"fire",	# A library for automatically generating command line interfaces.
+	"flask-typed-routes",	# Flask extension designed to effortlessly validate requests with Pydantic based on standard Python type hints.
+	"flycatcher",  # Define your data schema once. Validate at scale. Stay columnar.
+	"forecastEval",	# rigorous and statistically grounded forecast evaluation, with baseline comparison, horizon-stratified analysis, and Diebold–Mariano testing.
+	#	"fractime", # Python library for advanced time series forecasting using fractal geometry and chaos theory
+	"frame-search",  # Query dataframes with GitHub search syntax
+	"framex",  # dataframe operations
+	"freezegun",  # Let your Python tests travel through time
+	"friendly",  # Friendlier tracebacks in any language.
+	#	"frontier-council",	# Multi-model deliberation for important decisions. 4 frontier LLMs debate with rotating challenger, then Claude judges.
+	"frozen-cub",	# A set of C and Python implementations of immutable, hashable, and performant frozen objects.
+	"frozen-odict",	# FrozenOdict behaves similarly to an OrderedDict but is immutable and hashable, making it suitable for use as dictionary keys or set members.
+	"fugue",	# Fugue is a unified interface for distributed computing that lets users execute Python, Pandas, and SQL code on Spark, Dask, and Ray with minimal rewrites.
+	"fundedness",	# A Python financial planning toolkit with CEFR calculations, Monte Carlo simulations, and beautiful visualizations
+	"functime",  # Time-series machine learning at scale.
+	"fuzzyrust",  # High-performance string similarity library for Python, written in Rust
+	#	"garpar",  # Generation and Analysis of Real and Artificial Portfolio Returns
+	"gelidum",  # Freeze your objects in python
+	"genieclust",  # Genie: Fast and Robust Hierarchical Clustering with Noise Point Detection
+	"getfactormodels", 	# Download datasets for various multifactor asset pricing models.
+	"ggcorrplot",  # Visualization of a Correlation Matrix using plotnine
+	"ggplotly",	# A data visualization library for Python that combines the grammar of graphics from ggplot2 with the interactivity of Plotly.
+	"ggsci",	# Plotnine color palettes inspired by plots in scientific journals, data visualization libraries, science fiction movies, and TV shows
+	"ggviews",	# ggplot2 interface to holoviews
+	"gherkin2robotframework",  # Translate Gherkin feature files into RobotFramework tests
+	"gherkin-official",  # Gherkin parser (official, by Cucumber team)
+	"git-changelog",	# Automatic Changelog generator using Jinja2 templates. From git logs to change logs.
+	"Glacify",  # A Dataframe validation package for Polars
+	#	"Glances",	# open-source system cross-platform monitoring tool. I
+	"gptables",  # Simplifying good practice in statistical tables.
+	"gqylpy-exception",  # `gqylpy-exception` is a flexible and convenient Python exception handling library that allows you to dynamically create exception classes and provides various exception handling mechanisms.
+	#	"grape",  # GRAPE is a Rust/Python Graph Representation Learning library for Predictions and Evaluations.
+	"graphistry",  # A visual graph analytics library for extracting, transforming, displaying, and sharing big graphs with end-to-end GPU acceleration
+	#	"great-expectations",  # Always know what to expect from your data.
+	"great-tables",  # Easily generate information-rich, publication-quality tables from Python.
+	"green",	# Green is a clean, colorful, fast python test runner.
+	"gzip-json",  # A Python library for reading and writing gzip-compressed JSON files
+	"handle-exception",  # A Python library for handling exceptions in a clean and organized way
+	"hciplot",  # High-contrast Imaging Plotting library
+	"heroshot",  # Screenshot automation integrations for Python documentation tools
+	#	"highcharts-core",  # High-end Data Visualization for the Python Ecosystem. Official wrapper for Highcharts Core (JS).
+	#	"highcharts-stock",  # High-end Time Series Data Visualization for the Python Ecosystem
+	"highlander-enum",  # Better enums including flags with subsets in which there can be only one... set.
+	"highspy",  # A thin set of pybind11 wrappers to HiGHS
+	"hmmlearn",  # Hidden Markov Models in Python with scikit-learn like API
+	"holobench",	#  A package for benchmarking the performance of arbitrary functions
+	"holoviews",  # A high-level plotting API for the PyData ecosystem built on HoloViews.
+	"htmltools",  # Tools for HTML generation and output.
+	"html-to-markdown",	# High-performance HTML to Markdown converter powered by Rust with a clean Python API
+	"httpx",  # The next generation HTTP client.
+	"httpx-defaults",	# Production-ready httpx client with secure defaults: timeouts, retries, connection limits.
+	"httpx-retries",	# A retry layer for HTTPX.
+	"httpx-tenacity",	# A lightweight package that provides tenacious (retrying) httpx transports.
+	"human-errors",	# humans do make some errors, so we should show it to them, so that it can be fixed
+	"huez",  # A unified color scheme solution for Python visualization
+	"hvplot",  # A high-level plotting API for the PyData ecosystem built on HoloViews.
+	"hyperactive",  # An optimization and data collection toolbox for convenient and fast prototyping of computationally expensive models.
+	"hyposchema",  # Generate Hypothesis generators from a json schema definition
+	"hypothesis",  # The property-based testing library for Python
+	"hypothesis-auto",  # Extends Hypothesis to add fully automatic testing of type annotated functions
+	"hypothesis-json",  # Hypothesis strategy to generate JSON
+	"hypothesis-pandas",  # Provides strategies for generating various `pandas` objects
+	"hypothesis-trio",  # Hypothesis plugin for trio
+	"hyppo",  # A comprehensive independence testing package
+	"ibis-framework[polars]",  # The portable Python dataframe library
+	"icecream",  # Never use print() to debug again: inspect variables, expressions, and program execution with a single, simple function call.
+	#	"ideal-ai",	# Universal Python LLM Connector. Unified API for ChatGPT, Ollama, DeepSeek, Gemini & Qwen. Native Multimodal support (Text, Vision, Audio, Video) for building AI Agents. 100% Open Source.
+	"idendrogram",  # Interactive dendrograms compatible with scipy, scikit-learn and hdbscan
+	"idendrogram-streamlit-component",  # Bi-directional Streamlit component for creating interactive dendrograms
+	"inform", # collection of print functions that have different roles: log, comment, codicil, narrate, display, output, notify, debug, warn, error, fatal and panic.
+	"intake",  # Data catalog, search and load
+	"investing-algorithm-framework",	# Build. Backtest. Deploy. Quantitative Trading Strategies at Scale
+	"itables",  # Python DataFrames as interactive DataTables
+	"iterabledata",  # Iterable data processing Python library
+	"jquantstats",  # Analytics for quants
+	"joinem",  # CLI for fast, flexbile concatenation of tabular data using Polars.
+	"jsharpe",	# Probabilistic Sharpe ratio and related statistics.
+	"json-anatomy",  # Scout, explore, infer, and analyze JSON structure and navigate data safely with intuitive exploration tools.
+	"jr-exception-tools",  #  It provides enhanced error reporting, automatic context capture, rich formatting options, and seamless logging integration
+	"json-any",  # JSON and unJSON objects of any type
+	"json-arg",  # Load json as args and save args to json. Convert arg parser to json-schema and convert json-schema to arg parser
+	"json-advanced",  # This Python package provides an extended JSON encoder class, `JSONSerializer`, that enables encoding of complex Python data types such as `datetime.datetime`, `datetime.date`, `datetime.time`,...
+	"json-corrector",  # Takes data, that is almost in json format, and converts it to json data. Thus prepare the data for a json parser.
+	"json-comments",  # Rust-backed JSON comment and trailing comma stripper
+	"json-compare-karate",  # A recursive json comparison library that handles karate style json comparison
+	"json-criteria",  # Python library designed for evaluating data against serializable JSON criteria
+	"json-database",  # searchable json database with persistence
+	"json-differ",  # A minimal, human-readable JSON difference tool.
+	"json-e",  # A data-structure parameterization system written for embedding context in JSON objects
+	"json-flatten",  # Python functions for flattening a JSON object to a single dictionary of pairs, and unflattening that dictionary back to a JSON object
+	"json-indent",  # Simple Python-based JSON parser/indenter/formatter
+	"json-logging",  # JSON Python Logging
+	"json-logify",  # Universal structured logging with exact JSON schema for Python frameworks
+	"json-merger",  # Python module that is able to merge json record objects.
+	"json-numpy",  # JSON encoding/decoding for Numpy arrays and scalars
+	"json-ops",  # This is the `json-ops` package, intended to provide a collection of utilities for working with JSON data.
+	"json-pretty-diff",	# Generate a clean HTML report that summarizes the top-level differences between two JSON files. The report groups keys into Added, Removed, and Changed sections
+	"json-repair",  # A package to repair broken json strings
+	"json-store",  # A shelve-like store using JSON serialization.
+	"json-tabulate",  # Python library and CLI app that translates arbitrarily-nested JSON into CSV
+	"json-timeseries",  # JSON-TimeSeries (JTS specification) handling library
+	#	"json-toon",  # Convert Python data to TOON (Token-Oriented Object Notation) - A lightweight, LLM-friendly structured data format
+	"json-types",  # Type definitions and utilities for working with JSON in Python.
+	"json-verifier",  # Allows a test to spot-check various values of a JSON object
+	"judo-framework",  # A comprehensive API testing framework for Python, inspired by Karate Framework
+	"justpipe",	# Your code is the graph. A zero-dependency, async orchestration library for building event-driven AI pipelines.
+	#	"kalibr",	# Adaptive routing for AI agents. Learns which models work best and routes automatically.
+	"KAN-synth",  # Synthetic data generation using KAN-enhanced CTGAN/TVAE architectures
+	"k-diagram",  # Rethinking Forecasting Uncertainty via Polar-Based Visualization
+	#	"kernle",	# Kernle gives AI agents persistent memory, emotional awareness, and identity continuity.
+	"klepto",  # persistent caching to memory, disk, or database
+	"klogg",  # Simple command line work logger
+	"kontra",	# Kontra validates data against declarative rules. It stays fast on large datasets by resolving checks from metadata when possible, then running the rest via batched SQL pushdown (DuckDB / PostgreSQL / SQL Server).
+	#	"kreuzberg",	# High-performance document intelligence library for Python. Extract text, metadata, and structured data from PDFs, Office documents, images, and 50+ formats. Powered by Rust core for 10-50x speed improvements.
+	#	"langextract",	# extracting structured information from unstructured text using LLMs with precise source grounding and interactive visualization.
+	"lavendertown",	# A Streamlit-first Python package for detecting and visualizing data quality issues
+	"lazybear-polars",  # Polars-like lazy access to a database.
+	"lets-plot",	# Lets-Plot is a multiplatform plotting library built on the principles of the Grammar of Graphics.
+	"libsass",  # Sass for Python: A straightforward binding of libsass for Python.
+	"lifelib",  # Actuarial models in Python
+	"lifelines",  # Survival analysis in Python, including Kaplan Meier, Nelson Aalen and regression
+	"lightgbm",  # LightGBM Python-package
+	"line-profiler",  # Line-by-line profiler
+	#	"linopy",  # Linear optimization with N-D labeled arrays in Python
+	"linregressor",  # Linear Regressor that automatically does all the tests on the data
+	#	"litestar",  # Litestar - A production-ready, highly performant, extensible ASGI API Framework
+	#	"litestar-api-auth",  # API Key Authentication for Litestar applications
+	#	"litestar-asyncapi",  # AsyncAPI plugin for Litestar
+	#	"litestar-browser-reload",  # Automatic browser reload plugin for Litestar, designed for development use.
+	#	"litestar-email",  # Email plugin for Litestar
+	#	"litestar-flags",  # Production-ready feature flags library for Litestar
+	#	"litestar-htmx",  # HTMX Integration for Litestar
+	#	"litestar-msgspec",  # A fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML.
+	#	"litestar-oauth",  # OAuth2 authentication plugin for Litestar
+	#	"litestar-playwright",  # Playwright integration for Litestar.
+	#	"litestar-users",  # Authentication and user management for Litestar
+	#	"litestar-utils",  # Utilities for the Litestar framework.
+	#	"litestar-workflows",  # Workflow management in Litestar
+	"lithos",	# Lithos: plotting package for categorical and nested data.
+	#	"lixplore-cli",	# Academic Literature Search & Export CLI Tool
+	#	"llnl-ibis",	# LLNL's Interactive Bayesian Inference and Sensitivity, or IBIS, provides tools to enable understanding how the output of a model is impacted by uncertainty in its inputs. With the sensitivity module we can rank and visualize the effect of inputs on the computational model output
+	#	"local-deep-research",	# AI-powered research assistant with deep, iterative analysis using LLMs and web searches
+	"locust",  # Developer-friendly load testing framework
+	"logfire",  # The best Python observability tool!
+	"loggerplusplus",  # LoggerPlusPlus is an enhanced Python logging module with colorized output, customizable themes, improved multi-logger management, and optimized display for better readability. Built on top of Loguru,...
+	"logging-loguru",  # Tiny script for integrating the Python's standard Logging output to the colorful logs by the Loguru library
+	"loguru",  # Python logging made (stupidly) simple
+	"loguru-kit",  # Dead simple loguru setup
+	"loguru-logging-intercept",  # Code to integrate Loguru with Python's standard logging module
+	"loguru-throttler",  # A package for throttling duplicate log messages in loguru
+	"logutil",  # Easy initialization of standard python logging and loguru
+	"logxpy", # logging library that outputs structured, actionable logs tracing causal chains of actions—helping you understand why things happened in your application.
+	#	"luigi",	# uild complex pipelines of batch jobs. It handles dependency resolution, workflow management, visualization, handling failures, command line integration, and much more.
+	#	"lumen",  # A monitoring solution built on Panel.
+	"luxin",  # Interactive HTML tables with drill-down capabilities for exploring aggregated data
+	"makepackage",  # Creating a structure of a simple Python package
+	"maketables",	# creating publication-ready tables from regression results (statsmodels, pyfixest, linearmodels), descriptive statistics, and balance tables with output to LaTeX, Word, and HTML/Great Tables
+	"mamba",	# The definitive testing tool for Python. Born under the banner of Behavior Driven Development.
+	"MAPIE",  # A scikit-learn-compatible module for estimating prediction intervals.
+	#	"marimo",  # A library for making reactive notebooks and apps
+	"marimushka",	# Marimushka "exports" your marimo notebooks in a stylish, customizable HTML template, making them accessible to anyone with a web browser - no Python installation required!
+	"markdown2",  # A fast and complete Python implementation of Markdown
+	"markdowncleaner",	# A tool for cleaning and formatting markdown documents
+	"markdown-to-confluence",	# Publish Markdown files to Confluence wiki
+	"market_analy",	# Analysis of exchange-listed financial instruments
+	"marshmallow",	# A lightweight library for converting complex datatypes to and from native Python datatypes.
+	"matplotlib",  # Python plotting package
+	"matpy-linalg",	# A comprehensive Python library for vector and matrix operations with a clean, Pythonic API
+	# 	"MC-post",	# Monte Carlo Post-analysis package for global sensitivity analysis and integration
+	"mdformat-mkdocs",  # An mdformat plugin for mkdocs and Material for MkDocs
+	"memhunt",	# Memory debugging tools for Python applications
+	#	"memorax",	# A unified JAX/Flax framework for memory-augmented reinforcement learning with support for RNNs, SSMs, and Transformers
+	#	"memray",	# A memory profiler for Python applications
+	"mermaid-diagram",  # Generate the string which represents a Mermaid diagram.
+	"mermaid-py",	# Python Interface for the Popular mermaid-js Library, Simplified for Diagram Creation.
+	"mermaid-rs",	# Python bindings for mermaid-rs-renderer - Fast Mermaid diagram rendering in Rust
+	"mermaid-trace",	# Visualize your Python code execution flow as Mermaid Sequence Diagrams.
+	#	"metorial",	# Python SDK for Metorial - The open source integration platform for agentic AI
+	#	"mintalib", 	# Minimal Technical Analysis Library for Python
+	"mimosa-tool",	# Model-Independent Motif Similarity Assessment (MIMOSA) is tool designed to support comparisons across different motif model types.
+	"mixer",	# fixtures replacement. Supported Django ORM, SqlAlchemy ORM, Mongoengine ODM and custom python objects.
+	"mkdocs",  # Project documentation with Markdown.
+	"mkdocs-alias-plugin",  # An MkDocs plugin allowing links to your pages using a custom alias
+	"mkdocs-autoapi",  # MkDocs plugin providing automatic API reference generation
+	"mkdocs-autorefs",  # Automatically link across pages in MkDocs.
+	"mkdocs-backlinks",  # A MkDocs plugin for adding backlinks to your documentation pages.
+	"mkdocs-badges",  # Add badges to your MkDocs page
+	"mkdocs-caption",  # Enhance your MkDocs documentation with easy figure, table captioning and numbering.
+	"mkdocs-categories-plugin",  # An MkDocs plugin allowing for categorization of pages
+	"mkdocs-coverage",  # MkDocs plugin to integrate your coverage HTML report into your site.
+	#	"mkdocs-dataview",  # A mkdocs plugin inspired by dataview plugin in Obsidian
+	"mkdocs-decodiff-plugin",	# MkDocs plugin to decorate git diff lines
+	"mkdocs-diagrams-plugin",  # MkDocs plugin to render Diagrams files
+	"mkdocs-doubleslash-theme",  # doubleSlash Theme for MkDocs
+	"mkdocs-drawio-converter",  # MkDocs plugin to convert Drawio files to SVG format
+	"mkdocs-drawio-km",  # MkDocs plugin for embedding Drawio files
+	"mkdocs-freetext",  # A comprehensive MkDocs plugin for adding interactive free-text questions and assessments
+	"mkdocs-gen-files",  # MkDocs plugin to programmatically generate documentation pages during the build
+	"mkdocs-glossary",  # A MkDocs plugin that automatically creates references to glossary terms within italicized text from a specified glossary list file.
+	"mkdocs-gherkin-plugin",  # An Mkdocs Plugin that Injects Cucumber Results in your Living Documentation
+	"mkdocs-idm",  # IDM's custom MkDocs theme based on Material with enhanced features
+	"mkdocs-interwiki",  # DokuWiki-like InterWiki links for MkDocs
+	"mkdocs-issues-plugin",  # Issues, PRs, Discussions status and labels in mkdocs.
+	"mkdocs-landing",  # mkdocs theme geared towards making a personal landing page, with simpler navigation and heavily customisable style options.
+	"mkdocs-literate-nav",  # MkDocs plugin to specify the navigation in Markdown instead of YAML
+	"mkdocs-macros-plugin",  # Unleash the power of MkDocs with macros and variables
+	"mkdocs-macros-utils",  # mkdocs-macros-utils is a mkdocs-macros-plugin based project that provides macros to extend cards, code blocks, etc, in MkDocs documents.
+	"mkdocs-manpage",  # MkDocs plugin to generate a manpage from the documentation site.
+	#	"mkdocs-marimo",  # MkDocs marimo plugin
+	"mkdocs-material",  # Documentation that simply works
+	"mkdocs-materialx",  # Documentation that simply works
+	"mkdocs-md-to-pdf",	# Convert Markdown files to PDF using MkDocs Material theme and Playwright
+	"mkdocs-merge",  # Tool to merge multiple MkDocs sites into a single directory
+	"mkdocs-mermaid-to-svg",	# MkDocs plugin to preprocess Mermaid diagrams into static SVG images
+	"mkdocs-minify-plugin",  # An MkDocs plugin to minify HTML, JS or CSS files prior to being written to disk
+	"mkdocs-newsletter",  # Automatically create newsletters from the changes in a mkdocs repository
+	#	"mkdocs-mknodes",  # Don't write docs. Code them.
+	#	"mkdocs-partial",  # Mkdocs Partial Documentation
+	"mkdocs-pseudocode",  # A MkDocs plugin to render beautiful pseudocode with LaTeX-inspired syntax.
+	"mkdocs-pygments",  # Highlighting themes for code blocks.
+	"mkdocs-rich-argparse",	# An MkDocs plugin to generate documentation for a rich argparse parser
+	"mkdocs-roadmap",  # MkDocs plugin for rendering roadmap.yml files to roadmap.md files
+	"mkdocs-redirects",  # A MkDocs plugin for dynamic page redirects to prevent broken links
+	"mkdocs-section-index",  # MkDocs plugin to allow clickable sections that lead to an index page
+	#	"mkdocs-shadcn",  # Documentation that also shines
+	"mkdocs-slides",  # A MkDocs plugin for creating slide presentations within documentation
+	"mkdocs-snippets",  # Snippets for MkDocs
+	"mkdocstrings[python]",  # Automatic documentation from sources, for MkDocs.
+	"mkdocstrings-python",  # A Python handler for mkdocstrings.
+	"mkdocstrings-python-betterrefs",  # Extended mkdocstrings-python handler with better cross-references support
+	"mkdocs-tablestrip",  # This mkdocs plugin allows you to strip rows from tables across your documentation.
+	"mkdocs-test",  # A test framework for MkDocs projects
+	"mkdocs-terminal",  # Terminal.css theme for MkDocs
+	#	"mkdocs-texsmith",	# Convert MkDocs documentation to LaTeX PDF.
+	"mkdocs-towncrier",  # An insanely small plugin to add towncrier changelog draft into mkdocs
+	"mkdocs-translate",  # Translate from sphinx-build to mkdocs-material compatible markdown
+	#	"mkl-random",  # NumPy-based Python interface to Intel (R) MKL Random Number Generation functionality
+	"mkrefs",	# MkDocs plugin to generate semantic reference Markdown pages
+	#	"monaco",  # Quantify uncertainty and sensitivities in your models with an industry-grade Monte Carlo library.
+	"momentum",  # Running estimates of moments
+	"monte-carlo-sensitivity",	#  implements both univariate and multivariate perturbation strategies, following best practices in uncertainty quantification and sensitivity analysis
+	"monte-library",	# set of Monte Carlo methods in Python. The package is written to be flexible, clear to understand and encompass variety of Monte Carlo methods.
+	"more-itertools",  # More routines for operating on iterables, beyond itertools
+	"msgfy",	# convert Exception instance to a human-readable error message.
+	"msgkit",	#  logging informative causes/solutions for given errors.
+	"msgspec",  # A fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML.
+	"msgspec-x",	#  Provides dual namespace architecture - 'msgspec' for full compatibility and 'msgspec_x' for extended features.
+	"multiprocess",  # better multiprocessing and multithreading in Python
+	"multtestlib",  # Multtestlib, a package developed for performing unit tests in Python using multiprocessing.
+	"mypy",  # Optional static typing for Python
+	"mypy-extensions",  # Type system extensions for programs checked with the mypy type checker.
+	"mypy-pure",  # A mypy plugin that adds support for checking pure functions.
+	"mypy-raise",  # A mypy plugin to check for raised exceptions
+	"mystic",  # constrained nonlinear optimization for scientific machine learning, UQ, and AI
+	"named-enum",  # Python named enumeration, which extends the built-in Enum class with extra features.
+	#	"nanobot-ai",	# Ultra-Lightweight Personal AI Assistant inspired by Clawdbot (4K lines of code versus 430K lines of code)
+	#	"nanuquant",  # Institutional quantitative analytics at Polars speed.
+	"narwhals",  # Extremely lightweight compatibility layer between dataframe libraries
+	"nattrs",  # Nested attribute getter/setter that works with dictionaries and objects interchangeably.
+	"neo4j-viz",  # A simple graph visualization tool
+	"netsmith",  # Fast network analysis library with Rust acceleration
+	"networkit",  # NetworKit is a toolbox for high-performance network analysis
+	"networkx",  # Python package for creating and manipulating graphs and networks
+	"nice-errors",   # module that catches errors and displays them in a friendlier, more helpful way — with tips, emojis, and clear explanations!
+	"nitro-pandas", 	# A pandas-like API wrapper around Polars for high-performance data manipulation
+	"nox",  # Flexible test automation.
+	#	"ntiles",	# Vectorized quantile backtester.
+	"numba",  # compiling Python code using LLVM
+	#	"num-dual",	# Generalized (hyper) dual numbers for the calculation of exact (partial) derivatives
+	"numerizer",  # Python module for converting natural language numbers into ints and floats.
+	"numexpr",  # Fast numerical expression evaluator for NumPy
+	"numopspy",	# A comprehensive numerical operations library in pure Python
+	"numpy",  # Fundamental package for array computing in Python
+	"odict",	# ordered dictionary: Dictionary in which the insertion order of items is preserved (using an internal double linked list).
+	"oicana",	# dynamic PDF Generation based on Typst.
+	#	"oicana-native",	# Native Python bindings for Oicana. Most users should use the high-level oicana package instead.
+	"oipd",	# Generate probability distributions on the future price of publicly traded securities using options data
+	#	"omnidocs",  # Unified Python toolkit for visual document processing - think Transformers for document AI
+	"openseries",	# Tools for analyzing financial timeseries.
+	"opentsne",  # Extensible, parallel implementations of t-SNE
+	#	"optax",	# A gradient processing and optimization library in JAX.
+	"optimagic",  # Tools to solve difficult numerical optimization problems.
+	"optimalportfolios",  # Implementation of optimisation analytics for constructing and backtesting optimal portfolios in Python
+	"optree",  # Optimized PyTree Utilities.
+	"optuna",  # A hyperparameter optimization framework
+	"optyx",	# Intuitive symbolic interface for constrained optimization problems
+	"ordered-enum",  # A small library for adding total orderings to enums
+	"orjson",  # Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy
+	"orjson-qpython",	# The Fastest and Most Accurate JSON Library for Python
+	"ormsgpack",  # Fast, correct Python msgpack library supporting dataclasses, datetimes, and numpy
+	"osqp",  # OSQP: The Operator Splitting QP Solver
+	"owlplanner",  # Owl - Optimal Wealth Lab: Retirement planner with great wisdom
+	"pandas",	# Powerful data structures for data analysis, time series, and statistics
+	"pandas-airtable",	# A pandas wrapper for Airtable that provides seamless integration between pandas DataFrames and Airtable tables.
+	"pandas-bootstrap",	# Statistical Bootstrap with Pandas made easy
+	"pandas-checks", # Non-invasive health checks for Pandas method chains
+	"pandas-contract",	# Define input and output columns for functions working on pandas dataframes.
+	"pandas-dataclasses",	# pandas data creation by data classes
+	"pandas-flowchart",	# ntegrates with pandas to automatically track data transformation operations and generate visual flowcharts using HTML or Mermaid diagrams.
+	"pandas-indexing",	# Helpers to facilitate working with pandas indices in particular multiindices
+	"pandas-mermaid",	# Convert pandas DataFrame to Mermaid flowcharts
+	"pandas-plots",	# enhanced data visualization and analysis with pandas dataframe
+	"pandas-pretty-display",	#	A package to make pandas DataFrames display beautifully in Jupyter notebooks
+	"pandas-pyarrow",	# A library for switching pandas backend to pyarrow
+	"pandas-timeinterval",	# A package to trim datetime indexed DataFrames and Series in pandas.
+	"pandas-toon",	# TOON (Token-Oriented Object Notation) format support for pandas
+	"pandas-type-checks", # Structural type checking for Pandas data frames.
+	"pandas-type-detector", 	# A robust, production-ready library for automatically detecting and converting pandas DataFrame column types with sophisticated locale-aware parsing, confidence scoring, and enhanced text filtering capabilities.
+	"padawan",  # Wrangle partitioned data with polars.
+	"pandera",  # A light-weight and flexible data validation and testing tool for statistical data objects.
+	"pandera-unified-validator",  # Advanced data validation library unifying Pydantic and Pandera with multi-backend support
+	"panel",  # The powerful data exploration & web app framework for Python.
+	"panelbox",	# Panel data econometrics in Python: Fixed Effects, Random Effects, GMM (Arellano-Bond, Blundell-Bond), Robust Standard Errors (HC, Clustered, Driscoll-Kraay, Newey-West), Bootstrap, Sensitivity Analysis
+	"panel-mermaid",  # A project providing a Mermaid JS widget for use with HoloViz Panel.
+	"panel-modal",  # This package makes it super simple to do exploratory data analysis and develop high-quality Panel data apps ...
+	"panelini",  # Panelini is a user-friendly Python package designed to provide an out-of-the-box panel with a beautiful and responsive layout. It simplifies the creation of interactive dashboards by handling dynamic...
+	#	"paper-model",  # A robust backtesting engine for asset-pricing models.
+	#	"paperpipe",	# Unified paper database for coding agents + PaperQA2
+	"paper-portfolio",  # A portfolio construction and analysis tool for asset-pricing strategies.
+	#	"paper-qa",	# LLM Chain for answering questions from docs
+	#	"paper-qa-pymupdf",	# PaperQA readers implemented using PyMuPDF
+	#	"paper-qa-pypdf",	# PaperQA readers implemented using PyPDF
+	#	"papers-cli",	# utilities to keep your PDF library organized
+	"param",  # Declarative parameters for robust Python classes and a rich API for reactive programming
+	"para-pytest",  # Run pytest tests in parallel chunks for faster test execution
+	#	"parquetframe",  # A universal data processing framework with multi-engine support (pandas, Polars, Dask) and multi-format I/O (CSV, JSON, Parquet, ORC, Avro) with intelligent backend selection
+	#	"parquool", # Parquool - A Python Library for SQL like parquet query
+	"pathlib",  # Object-oriented filesystem paths
+	#	"parsantic",	# The structured extraction toolkit: parse, stream, extract, update, patch, and coerce LLM output — locally, deterministically, with one clean API.
+	#	"patchpal",	# A lean Claude Code clone in pure Python
+	"pathos",  # parallel graph management and execution in heterogeneous computing
+	"pathvalidate",  # pathvalidate is a Python library to sanitize/validate a string such as filenames/file-paths/etc.
+	"patito",  # A dataframe modelling library built on top of polars and pydantic.
+	"pavise",	# DataFrame validation library using Python Protocol for structural subtyping
+	"pdoc",  # API Documentation for Python Projects
+	#	"pdboost",	# PDBoost is a lightweight wrapper around Pandas that automatically detects when a dataset is too large for RAM. When it sees a large file (CSV, Parquet, JSON), it silently swaps the backend to DuckDB or Polars while keeping the standard Pandas API.
+	"pdbpp",  # pdb++, a drop-in replacement for pdb
+	"pdfslides2ppt",	# Convert PDF Slides to PowerPoint Presentations with Vector Graphics
+	"pelage", 	#  collection of tests to improve your Polars data analysis superpowers
+	"pendulum",  # Python datetimes made easy
+	#	"penguiflow",	# Async-first orchestration library for multi-agent and data pipelines
+	#	"perse",	# Perse is a unified DataFrame package that combines the best of Pandas, Polars, and DuckDB for efficient data handling, querying, and visualization.
+	"persidict",	# Simple persistent key-value store for Python. Values are stored as files on a disk or as S3 objects on AWS cloud. persidict is designed for distributed environments where multiple processes on different machines concurrently work with the same store.
+	"photoshoot", 	#  pytest plugin libary for making snapshot testing with Polars DataFrames easy.
+	#	"physbiblio",	# A bibliography manager in Python (using Sqlite and PySide6)
+	"physt",	# P(i/y)thon h(i/y)stograms. Inspired (and based on) numpy.histogram, but designed for humans(TM) on steroids(TM).
+	#	"PiError",  # simplify Python error propagation; follows the "Errors as Values" principle giving the user control of how errors are stored, used, and raised without worrying about immediate runtime crashes
+	"pillow",  # Python Imaging Library (fork)
+	#	"pinchwork",	# Agent-to-agent task marketplace
+	"pipe",  # Module enabling a sh like infix syntax (using pipes)
+	"playwright",  # A high-level API to automate web browsers
+	"pl_compare",  # A tool to find the differences between two tables.
+	"plotly",  # An open-source interactive data visualization library for Python
+	"plotly-resampler",  # Visualizing large time series with plotly
+	"plotnine",  # A Grammar of Graphics for Python
+	"plotjs",	# Turn static matplotlib charts into interactive web visualizations
+	#	"plplugins",	#	Collection of utilities for working with Polars
+	"pointblank",  # Find out if your data is what you think it is.
+	"polar-diagrams",  # Interactive Polar Diagrams for Model Comparison
+	"polarify",  # Simplifying conditional Polars Expressions with Python
+	"polarmints",  # syntactic sugar and additional namespaces for polars
+	"polaroids", 	# generic extension to Polars DataFrame, allowing data validation and typing goodies.
+	"polarpandas",  # A pandas-compatible API layer built on top of Polars for high-performance data manipulation
+	"polars",  # Blazingly fast DataFrame library
+	"polars-api",  # Polars extension for dealing with REST APIs
+	"polars-argpartition",  # Polars plugin implementing argpartition function
+	"polars-array-algorithms",  # Rust-accelerated array algorithms for Polars DataFrames.
+	"polars-as-config",  # A Python package for using Polars from configuration
+	"polars-backtest",  # Polars extension for portfolio backtesting
+	#	"polars-bloomberg",  # Python library providing a Polars DataFrame interface for easy and intuitive access to Bloomberg API.
+	"polars-business",  # Business day utilities for Polars
+	"polars-cache",  # A lightweight caching library for polars
+	"polars-config-meta",	# It attaches Python-side metadata to Polars objects and preserves it across transformations
+	#	"polars-diskcache",	# A diskcache decorator for Polars DataFrames and LazyFrames that saves function results as Parquet files
+	"polars-distance",  # Polars plugin for pairwise distance functions
+	"polars-ds",	# covers a wide variety of data science topics, such as simple statistics, linear regression, string edit distances, tabular data transforms, feature extraction, traditional modelling pipelines, model evaluation metrics, etc
+	"polars-expr-hopper",	#  'hopper' of expressions for automatic, schema-aware application. Define your filters and transformations upfront, and let them apply automatically as soon as the columns they need exist
+	"polars-expr-transformer",  # Transform string-based expressions into Polars DataFrame operations
+	"polars-extensions",  # The Library of Polars Extensions
+	#	"polars-fastembed",  # A Polars plugin for text embeddings in DataFrames
+	"PolarsFE",  # Feature engineering using polars
+	#	"polars-features",  # Time-series machine learning at scale.
+	"polars-genson",	# A Polars plugin for JSON schema inference using genson-rs.
+	"polars-grouper",  # High-performance graph analysis and pattern mining extension for Polars
+	"polars-holidays",	# A polars plugin for determining if a date is a holiday
+	#	"polars-interval-match",  # A Python extension module for matching intervals in Polars DataFrames
+	#	"polars-list-utils",  # Utilities for working with List columns in Polars
+	"polars-lprof",  # Read line profiler reports into Polars DataFrames
+	"polars-matmul",	# High-performance similarity joins for Polars
+	"polars-nexpresso",  # A utility library for generating Polars expressions to work with nested data structures
+	#	"polars-normal-stats",  # Fast normal distribution functions (CDF, PPF, PDF) for Polars DataFrames using Rust
+	"polars-ols",  # Polars Least Squares Extension
+	"polars-permute[polars]",  # A Polars plugin for easily reordering DataFrame columns
+	"polars-qf",  # A quant factor plugin for polars
+	"polars-quant",  # Blazingly Fast Polars Quant Tool
+	"polars-random",  # Polars plugin for generating random distributions
+	#	"polars-rng",  # Random number generation as polars expressions
+	"polars-row-collector",	# Facade to collect rows one-by-one into a Polars DataFrame (in the least-bad way)
+	"polars-schema-index",  # A Polars plugin for flattening nested data
+	"polarscope",  # Simple data inspection tools for Polars - basic X-ray analysis and utilities for DataFrames.
+	"polars-sgt",	# Sequence Graph Transform (SGT) for Polars - Transform sequential data into weighted n-gram representations
+	#	"polars-sim",  # Fast similarity join for polars DataFrames.
+	"polars-splines",  # A polars expression plugin for splines
+	"polars-splitters",  # Polars-based splitter functionalities for polars LazyFrames and DataFrames, similar to `sklearn.model_selection.train_test_split` and `sklearn.model_selection.StratifiedKFold`.
+	"polars-statistics",	#	Statistical tests, regression, and machine learning for Polars - t-tests, ANOVA, chi-square, correlation, OLS, GLM, quantile regression, and more
+	"polars-strsim",  # Polars extension for string similarity
+	"polars-ta",  # polars expressions
+	"polars-talis",	#	A high-performance technical analysis library built on top of Polars
+	#	"polartableone",	# A polars-based implementation of the `tableone` library for generating summary statistics tables, often referred to as a 'Table 1'.
+	#	"polars-timeseries",  # Polars Time Series Extension
+	#	"polars-timeseries-utils",  # Library with utility functions for Polars DataFrames, similar to scikit-learn & pandas functionalities.
+	"polars-tsfresh",  # Fast implementation of tsfresh time series feature extraction using Polars
+	"polars-utils",  # Weighted means, variances, quantiles, fixed effects, and more in Polars.
+	"polars-validate",  # Validate Polars DataFrames using type hints
+	"polars-writer",  # polars_writer is a library that enables JSON-based configuration of Polars DataFrame writing methods, facilitating language-agnostic data export for end-user facing data products.
+	"polars-xdt", 	# eXtra stuff for Dates and Times in Polars
+	"poldantic",  # Convert Pydantic models to Polars schemas
+	"polyfactory",  # Mock data generation factories
+	"powerlawrs",	#	A fast package for analyzing Power-Law distributions in empirical data written in Rust.
+	"pox",  # utilities for filesystem exploration and automated builds
+	"ppar",	# portfolio-performance-analytics (ppar) is a python package that produces holdings-based multi-period performance attribution, contribution, and benchmark-relative ex-post risk statistics.
+	"ppft",  # distributed and parallel Python
+	"ppft-py",  # Highly optimized Pseudo-Polar Fourier Transform in Python
+	"pq-peek",	# A blazing fast, memory-efficient CLI tool to inspect large Parquet files directly in the terminal. Built with Polars, Typer, and Rich. Managed via uv.
+	"precise",  # The home of Schur Hierarchical Portfolios: an aesthetically pleasing version of Hierarchical Risk Parity
+	"predictionrevisited",  # Prediction Revisited module for observation-based prediction
+	"predtiler", # Subclassing your dataset class into a new class that can be used for tiled prediction to obtain the stitched prediction.
+	#	"prefect",  # Workflow orchestration and management.
+	"prek", 	# Better `pre-commit`, re-engineered in Rust
+	"pretty-assert",	# print pretty, user-friendly assertions.
+	"pretty-colors",  # A package for working with colors, including retrieval, random selection without repeats, and hex-to-RGB conversion.
+	"pretty-errors",  # Prettifies Python exception output to make it legible.
+	"pretty-io",	#  Python module for pretty terminal input/output with ANSI styling
+	"pretty-json-loguru",  # Pretty Python JSON logs
+	"pretty-loguru",  # A Loguru-based logger with Rich panels, ASCII art headers, blocks and more.
+	"pretty-pie-log",	# A feature-rich logging utility that provides colorized console output with customizable formatting
+	"pretty-progress",	# A simple Python progress bar utility for loops.
+	#	"pretty-repr",  # create clear and informative methods for your own classes in Python.
+	"prettytable",  # A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
+	"pretty-traceback",  # Human readable stacktraces.
+	"pretty-verbose", 	# Package for colored organized verbose printing in python.
+	"pretty-warnings",	#	module for displaying formatted warnings.
+	"prince",  # Factor analysis in Python: PCA, CA, MCA, MFA, FAMD, GPA
+	#	"processpype",  # A modular application framework with built-in FastAPI integration and pluggable services
+	#	"promptable-traceback",  # automates that process "when the code fails", by capturing the "state of the world" at the exact moment of failure and formatting it into a clean, LLM-ready report.
+	"psutil",  # Cross-platform lib for process and system monitoring.
+	"pudb",	# A full-screen, console-based Python debugger
+	"pulp",  # PuLP is an LP modeler written in python. PuLP can generate MPS or LP files and call GLPK, COIN CLP/CBC, CPLEX, and GUROBI to solve linear problems.
+	"pulka",	# A tiny, fast VisiData-like tabular viewer for Polars.
+	#	"pyalex",	# Python interface to the OpenAlex database
+	"py-alpha-lib",	# high-performance rolling window calculation library implemented in Rust with Python bindings. Used for financial data analysis and factor research.
+	#	"pyarma",  # Linear algebra library for Python, with emphasis on ease of use
+	"pyarrow",  # Python library for Apache Arrow
+	"pybibget", # Command line utility to automatically retrieve BibTeX citations from MathSciNet, arXiv, PubMed and doi.org
+	#	"pybibx",	# A Bibliometric and Scientometric Library Powered with Artificial Intelligence Tools
+	"pybtex", # A BibTeX-compatible bibliography processor in Python
+	"pycharter",	# data contract management with five core services: contract parsing, metadata storage, Pydantic generation, JSON Schema conversion, and runtime validation
+	"pychebyshev",	# Fast multi-dimensional Chebyshev tensor interpolation with analytical derivatives
+	#	"pycolor_palette-loguru",  # Python library for color beautiful output and logging
+	"pycorrana",	#  Python Correlation Analysis Toolkit
+	"pydantic",  # Data validation using Python type hints
+	"pydantic-argparse",  # Typed Argument Parsing with Pydantic
+	"pydantic-cache",  # Pydantic Cache
+	"pydantic-cereal",  # Advanced serialization for Pydantic models
+	"pydantic-changedetect",  # Extend pydantic models to also detect and record changes made to the model attributes.
+	"pydantic-client",  # Http client base pydantic, with requests or aiohttp
+	#	"pydantic-collab",	# Multi Agent System Framework built on top of Pydantic AI.
+	"pydantic-collections",  # Collections of pydantic models
+	"pydantic-devtools",  # Devtools for the Pydantic library
+	"pydantic-dict",  # A pydantic model subclass that implements Python's dictionary interface.
+	#	"pydantic-deep",	# Deep Agent framework built on Pydantic-ai with planning, filesystem, and subagent capabilities
+	"pydantic-extensions",  # Toolkit for pydantic(dynamic fields + pagination + variable fields list)
+	"pydantic-fixturegen",  # Deterministic fixture generator for Pydantic models.
+	"pydantic-init",  # Through-Pydantic: Initialize Python Objects from JSON, YAML, and More
+	"pydantic-logic",  # Build complex rules, operate them with Pydantic, and execute them in Python
+	#	"pydantic-mini",  # Dataclass with validation
+	#	"pydantic-outputs",  # Structured output support for Pydantic models.
+	#	"pydantic-panel",  # Top-level package for pydantic-panel.
+	#	"pydantic-patched",  # Data validation using Python type hints
+	#	"pydantic-qpython",  # Data validation using Python type hints
+	# 	"pydantic-serializable",  # A lightweight, type-safe base class for serializing/deserializing Pydantic models to/from JSON files, with built-in fallback to default data and overwrite protection.
+	"pydantic-settings",  # Settings management using Pydantic
+	"PyDebugger",  # Print objects with inspection details and color.
+	"pyecharts",	# Python options, make charting easier
+	#	"pyensmallen",  # Python bindings for the Ensmallen library.
+	"py-enum",  # enums for choices fields
+	"pyerrors",  # Error propagation and statistical analysis for Monte Carlo simulations
+	"pyextremes",  # Extreme Value Analysis (EVA) in Python
+	"pyfactories",  # Mock data generation for pydantic and dataclasses
+	#	"pyfmc",	# Finance Monte-Carlo Simulation using PyTorch
+	"pyfolio-reloaded",  # Performance and risk analysis of financial portfolios with Python
+	"pyforce-plot",	# Python implementation of ggforce-style annotations for matplotlib
+	#	"pygentic-ai",	# A meta-framework for building agentic workflows with Pydantic AI
+	"pygleam", # 	A lightweight Python package for enhanced print statements with automatic JSON/DataFrame formatting and beautiful colors
+	"pygments",  # Pygments is a syntax highlighting package written in Python.
+	"pygoerrors",  # brings Go-style error handling to Python, enabling error values, wrapping, and inspection without relying on exceptions
+	"pyindicators",	# library for financial technical analysis indicators, metrics and helper functions
+	"pyinterpolate",	# Spatial interpolation in Python for point measurements and aggregated datasets.
+	"pyjanitor",  # Tools for cleaning pandas DataFrames
+	"pylint",  # python code static checker
+	"pymdown-extensions",  # Extension pack for Python Markdown.
+	#	"pymerdoc",	# A tool for creating and managing Mermaid diagrams with modern UI
+	"pymongoarrow",	# Tools for using NumPy, Pandas, Polars, and PyArrow with MongoDB
+	"pymort-palqc",  # Longevity bond pricing and mortality modeling toolkit
+	"Pympler",	# development tool to measure, monitor and analyze the memory behavior of Python objects.
+	"pynguin",  # Pynguin is a tool for automated unit test generation for Python
+	"pyobjtojson",	# simplifies serializing any Python object to JSON-friendly structures, gracefully handling circular references.
+	"pyod",  # A Comprehensive and Scalable Python Library for Outlier Detection (Anomaly Detection)
+	"pyoframe",	# rapidly and memory-efficiently formulate large and sparse optimization models using Pandas or Polars DataFrames.
+	"pyomo",  # The Pyomo optimization modeling framework
+	"PyOptInterface",  # Python interface to multiple optimization solvers
+	"pyosmo",  # pyosmo - a model-based testing tool
+	#	"PyPardiso",  # Python interface to the Intel MKL Pardiso library to solve large sparse linear systems of equations
+	"pypaya-json",  # Enhanced JSON processing with includes, comments, and more
+	"pyperclip",  # A cross-platform clipboard module for Python. (Only handles plain text for now.)
+	"pyperf",  # Python module to run and analyze benchmarks
+	"pyperformance",  # Python benchmark suite
+	"pypesto",	#  Parameter EStimation TOolbox
+	#	"pypomp",	# Modeling and inference using partially observed Markov process (POMP) models
+	#	"pyportfolioopt",  # Financial portfolio optimization in python
+	"py-profiler",  # A library to measure your method, function execution time.
+	"pyproject-fmt",	# Apply a consistent format to your pyproject.toml file with comment support
+	"pypst",	# Declarative Typst in Python with Pandas data frame support.
+	"pyquery-polars",  # Enterprise-grade Headless ETL Engine with Interactive UI
+	#	"pyqlib",  # A Quantitative-research Platform
+	"pyrefly",  # A fast type checker and language server for Python with powerful IDE features
+	"pyrest-model-client",	#
+	"pyreto",	#	Tail risk management library with Monte Carlo simulation (classless functional API)
+	"pyright[nodejs]",  # Command line wrapper for pyright
+	"pyright-analysis",  # Visualise Python project type completeness
+	"pyright-cov",  # Run Pyright and enforce minimum type coverage
+	#	"pyscamp",  # SCAlable Matrix Profile
+	#	"pysensedf",	#  AI-powered Python DataFrame that beats Pandas - Monte Carlo simulation, 27-92x faster with smart caching & NumPy backend
+	"py-serializable",  # Library for serializing and deserializing Python Objects to and from JSON and XML.
+	"py-spy",	#  It lets you visualize what your Python program is spending time on without restarting the program or modifying the code in any way. py-spy is extremely low overhead: it is written in Rust for speed and doesn't run in the same process as the profiled Python program.
+	"pystats",  # A Python 3 package of statistical analysis and distributions
+	"pystore",  # Fast data store for Pandas timeseries data
+	"pytabulator",  # Shiny bindings for Tabulator JS
+	"pytest",  # pytest: simple powerful testing with Python
+	#	"pytest-accept",  # # pytest-accept
+	#	"pytest-agents",	# Pytest plugin framework with AI agent capabilities for multi-agent testing
+	#	"pytest-ai",  # A Python package to generate regular, edge-case, and security HTTP tests.
+	"pytest-aio",  # Pytest plugin for testing async python code
+	"pytest-annotated",  # Pytest plugin to allow use of Annotated in tests to resolve fixtures
+	"pytest-approval",  # A simple approval test library utilizing external diff programs such as PyCharm and Visual Studio Code to compare approved and received output.
+	"pytest-asyncio",  # Pytest support for asyncio
+	"pytest-autofocus",  # Auto-focus plugin: run only @pytest.mark.focus tests when --auto-focus is set
+	"pytest-benchmark",  # A ``pytest`` fixture for benchmarking code. It will group the tests into rounds that are calibrated to the chosen timer.
+	#	"pytest-brightest",  # Bright ideas for improving your pytest experience
+	#	"pytest-bug",  # Pytest plugin for marking tests as a bug
+	"pytest-cases",  # Separate test code from test cases in pytest.
+	"pytest-check",  # A pytest plugin that allows multiple failures per test.
+	"pytest-checkdocs",  # check the README when running tests
+	"pytest-checklist",  # Pytest plugin to track and report unit/function coverage.
+	"pytest-checkpoint",  # Restore a checkpoint in pytest
+	#	"pytest-clarity",  # A plugin providing an alternative, colourful diff output for failing assertions.
+	"pytest-cleanslate",  # Collects and executes pytest tests separately
+	"pytest-codeblock",  # Pytest plugin to collect and test code blocks in reStructuredText and Markdown files.
+	"pytest-conductor",  # Pytest plugin for coordinating the order in which marked tests run.
+	"pytest-cov",  # Pytest plugin for measuring coverage.
+	"pytest-coverage-context",  # Coverage dynamic context support for PyTest, including sub-processes
+	"pytest-crayons",  # A pytest plugin for colorful print statements
+	"pytest-cream",  # The cream of test execution - smooth pytest workflows with intelligent orchestration
+	"pytest-custom-outputs",  # A plugin that allows users to create and use custom outputs instead of the standard Pass and Fail. Also allows users to retrieve test results in fixtures.
+	"pytest-databases",  # Reusable database fixtures for any and all databases.
+	"pytest-datadir",  # pytest plugin for test data directories and files
+	"pytest-datafixtures",  # Data fixtures for pytest made simple.
+	"pytest-data-loader",  # Pytest plugin for loading test data for data-driven testing (DDT)
+	"pytest-datarecorder",  # A py.test plugin recording and comparing test output.
+	"pytest-deadfixtures",  # A simple plugin to list unused fixtures in pytest
+	"pytest-delta",  # Run only tests impacted by your code changes (delta-based selection) for pytest.
+	"pytest-depends",  # Tests that depend on other tests
+	#	"pytest-depends-on",  # A Python package for managing test dependencies in pytest.
+	"pytest-directives",  # Control your tests flow
+	"pytest-ditto",  # Snapshot testing pytest plugin with minimal ceremony and flexible persistence formats.
+	"pytest-doctestplus",  # Pytest plugin with advanced doctest features.
+	"pytest-dparam",  # A more readable alternative to @pytest.mark.parametrize.
+	#	"pytest-dryrun",  # A Pytest plugin to ignore tests during collection without reporting them in the test summary.
+	#	"pytest-duration-insights",  # A mini dashboard to help find slow tests in pytest.
+	#	"pytest-durations",  # Pytest plugin reporting fixtures and test functions execution time.
+	#	"pytest-embrace",  #  Dataclasses-as-tests. Describe the runtime once and multiply coverage with no boilerplate.
+	"pytest-error",  # provides an @error decorator to validate pytest tests that should raise an exception.
+	"pytest-everyfunc",  # A pytest plugin to detect completely untested functions using coverage
+	"pytest-excel",  # pytest plugin for generating excel reports
+	"pytest-factoryboy",	# combine factory approach to the test setup with the dependency injection, heart of the pytest fixtures.
+	"pytest-fastcollect",  # A high-performance pytest plugin that replaces test collection with a Rust-based implementation
+	"pytest-fast-first",  # Pytest plugin that runs fast tests first
+	"pytest-fixturecheck",  # A pytest plugin to check fixture validity before test execution
+	"pytest-freezegun",  # Wrap tests with fixtures in freeze_time
+	#	"pytest-fzf",  # fzf-based test selector for pytest
+	"pytest-gather-fixtures",  # set up asynchronous pytest fixtures concurrently
+	"pytest-gitscope",  # A pragmatic pytest plugin that runs only the tests that matter, and ship faster
+	"pytest-git-selector",  # Utility to select tests that have had its dependencies modified (as identified by git diff)
+	"pytest-glamor-allure",  # Extends allure-pytest functionality
+	"pytest-glow-report",  # Beautiful, glowing HTML test reports for PyTest and unittest.
+	"pytest-golden",  # Plugin for pytest that offloads expected outputs to data files
+	"pytest-goldie",  # A plugin to support golden tests with pytest.
+	#	"pytest-harmony",  # Chain tests and data with pytest
+	#	"pytest-history",  # Pytest plugin to keep a history of your pytest runs
+	"pytest-html",  # pytest plugin for generating HTML reports
+	"pytest-html-plus",  # Generate Actionable, automatic screenshots, unified Mobile friendly Pytest HTML report in less than 3 seconds — no hooks, merge plugins, no config, xdist-ready.
+	"pytest-httpx",  # Send responses to httpx.
+	"pytest-icdiff",  # use icdiff for better error messages in pytest assertions
+	"pytest-impacted",  # A pytest plugin that selectively runs tests impacted by codechanges via git introspection, ASL parsing, and dependency graph analysis.
+	"pytest-insta",  # A practical snapshot testing plugin for pytest
+	"pytest-instafail",  # pytest plugin to show failures instantly
+	#	"pytest-intent",  # A pytest plugin for tracking requirement coverage.
+	"pytest-json-report",  # A pytest plugin to report test results as JSON files
+	"pytest-lazy-fixtures",  # Allows you to use fixtures in @pytest.mark.parametrize.
+	#	"pytest-logikal",  # Common testing environment
+	"pytest-loguru",  # Pytest Loguru
+	"pytest-loop",  # pytest plugin for looping tests
+	"pytest-markdown-docs",  # Run markdown code fences through pytest
+	#	"pytest-matcher",  # Easy way to match captured `pytest` output against expectations stored in files
+	#	"pytest-mimesis",  # Mimesis integration with the pytest test runner
+	"pytest-mock",  # Thin-wrapper around the mock package for easier use with pytest
+	"pytest-modern",  # A more modern pytest
+	"pytest-ordered",  # Declare the order in which tests should run in your pytest.ini
+	"pytest-picked",  # Run the tests related to the changed files
+	"pytest-playwright",  # A pytest wrapper with fixtures for Playwright to automate web browsers
+	"pytest-playwright-enhanced",  # A pytest plugin for playwright python
+	"pytest-playwright-json",  # Generate Playwright-compatible JSON reports from pytest-playwright test runs
+	#	"pytest-profiling",  # Profiling plugin for py.test
+	"pytest-pretty",	#	Opinionated pytest plugin to make output slightly easier to read and errors easy to find and fix.
+	"pytest-progress",  # pytest plugin for instant test progress status
+	"pytest-pyreport",  # PyReport is a lightweight reporting plugin for Pytest that provides concise HTML report
+	"pytest-pyright",  # Pytest plugin for type checking code with Pyright
+	"pytest-pyspec",  # The pytest-pyspec plugin transforms pytest output into a beautiful, readable format similar to RSpec. It provides semantic meaning to your tests by organizing them into descriptive hierarchies, using...
+	"pytest-randomly",  # Pytest plugin to randomly order tests and control random.seed.
+	"pytest-ranking",  # A Pytest plugin for faster fault detection via regression test prioritization
+	"pytest-recap",  # Capture your test sessions. Recap the results.
+	"pytest-regressions",  # Easy to use fixtures to write regression tests.
+	"pytest-regtest",  # pytest plugin for snapshot regression testing
+	"pytest-replay",  # Saves previous test runs and allow re-execute previous pytest runs to reproduce crashes or flaky tests
+	"pytest-reporter",  # Generate Pytest reports with templates
+	"pytest-reqyaml",  # This is a plugin where generate requests test cases from yaml.
+	#	"pytest-rerunfailures",  # pytest plugin to re-run tests to eliminate flaky failures
+	"pytest-results",  # Easily spot regressions in your tests.
+	"pytest-rich",  # Leverage rich for richer test session output
+	"pytest-robotframework",  # a pytest plugin that can run both python and robotframework tests while generating robot reports for them
+	"pytest-ruff",  # pytest plugin to check ruff requirements.
+	"pytest-runner",  # Invoke py.test as distutils command with dependency resolution
+	# 	"pytest-scenarios",  # Python library designed to make integration testing with MongoDB effortless and maintainabl
+	"pytest-scenario-files", 	# A pytest plugin that generates unit test scenarios from data files.
+	"pytest-spec",  # Library pytest-spec is a pytest plugin to display test execution output like a SPECIFICATION.
+	"pytest-split",  # Pytest plugin which splits the test suite to equally sized sub suites based on test execution time.
+	"pytest-sugar",  # pytest-sugar is a plugin for pytest that changes the default look and feel of pytest (e.g. progressbar, show tests that fail instantly).
+	#	"pytest-testinel",  # Testinel’s pytest plugin captures structured test execution data directly from pytest and sends it to Testinel, where your test results become searchable, comparable, and actually useful.
+	"pytest-testmon",  # selects tests affected by changed files and methods
+	"pytest-timeout",  # pytest plugin to abort hanging tests
+	"pytest-typing-runner",  # Pytest plugin to make it easier to run and check python code against static type checkers
+	"pytest-watch",  # Local continuous test runner with pytest and watchdog.
+	"pytest-watcher",  # Automatically rerun your tests on file modifications
+	"pytest-when",  # Utility which makes mocking more readable and controllable
+	"pytest-xdist",  # pytest xdist plugin for distributed testing, most importantly across multiple CPUs
+	"pytest-xhtml",  # pytest plugin for generating HTML reports
+	#	"python-datamodel",	# eimplementation of python Dataclasses supporting true inheritance (without decorators), true composition and other good features.
+	"python-dateutil",  # Extensions to the standard Python datetime module
+	"python-errors",  #  designed to handle and manage exceptions effectively, ensuring that critical errors in your code are caught, logged, and handled in a structured way
+	"pytimetk",  # The time series toolkit for Python.
+	"pytmpinv", 	# Tabular Matrix Problems via Pseudoinverse Estimation
+	"pytools",  # A collection of tools for Python
+	"pytyped-json",  # Type-Driven Development for Python: Automatic Extraction of JSON Decoders/Encoders for Python Types
+	"py-vallocation", 	# Portfolio allocation tools with views, robust optimization, and ensembling
+	"pyversus", 	# while pushing all heavy work into DuckDB, use it to compare two duckdb relations (tables or views) or pandas/polars DataFrames without materializing them
+	"pyx",  # Python package for the generation of PostScript, PDF, and SVG files
+	"qis",  # Quantitative Investment Strategies (QIS) package implements Python analytics for visualisation of financial data, performance reporting, analysis of quantitative strategies
+	"qpsolvers",  # Quadratic programming solvers in Python with a unified API.
+	"quicketl", 	# Fast & Flexible Python ETL Framework with 20+ backend support via Ibis
+	"QuantCrate",	# A smart binary container for financial time-series data.
+	"quantlabs",	#  A quantitative trading research platform powered by Microsoft's Qlib, designed for systematic alpha generation and backtesting.
+	"QuantLib",  # Python bindings for the QuantLib library
+	"QuantLib-Risks",  # Fast risks calculations in QuantLib
+	"quantlite", # A robust quant finance library
+	"quantstats",  # Portfolio analytics for quants
+	#	"quarto-tech-memo",	# A CLI script to convert a markdown note to a polished PDF tech memo using Quarto.
+	"queuack",	#  DuckDB-Powered Job Queue & DAG Engine
+	"QuickEcharts",  # Create ECharts plots in a single simple function call, with internal data wrangling via polars
+	"quickslides",	# Convert Markdown to PDF slides using Typst and typslides
+	"quillmark",	# Python bindings for Quillmark - template-first Markdown rendering
+	#	"quool",	#  framework designed specifically for quantitative investment research. It aims to provide a flexible and efficient set of tools to help researchers and developers quickly implement data management, factor analysis, trading recording, and strategy evaluation functionalities
+	"r4pm",	#	Python bindings for the Rust4PM Project: data Process mining in Python with the speed of Rust
+	"random-password-toolkit",  # random-password-toolkit is a robust Python package for generating and managing random passwords with advanced features, including encryption, decryption, strength checking, and customizable...
+	#	"rapidstats",	# minimal library that implements fast statistical routines in Rust and Polars
+	"raptorbt",	# High-performance Rust backtesting engine with Python bindings. Drop-in VectorBT replacement with up insanely faster performance at fractional memory footprint.
+	"ravyn",  # Ravyn combines performance, type safety, and elegance. A next-generation async Python framework for APIs, microservices, and web applications.
+	"rattata",  # Convert between Polars schemas and Python data structures (dataclasses, TypedDicts, namedtuples)
+	#	"ray",  # Ray provides a simple, universal API for building distributed applications.
+	#	"raydb",	# High-performance embedded graph database with vector search. Python bindings to the Rust core.
+	#	"ray-ease",	# Switch from serial to parallel computing without requiring any code modifications.
+	#	"ray-simplify", #  simplifies the use of Ray for parallel execution by providing an intuitive, context-manager-based API with automatic resource management.
+	"rdatacompy",  # Lightning-fast dataframe comparison library built in Rust with Python bindings
+	"rdt",  # Reversible Data Transforms
+	"reactable",  # Interactive tables for Python.
+	"realcolor",	#  package designed to show how colorblind people see your graphs. It simulates all types of colorblindness
+	#	"remdb",	# Resources Entities Moments - Bio-inspired memory system for agentic AI workloads
+	"reportlab",  # The Reportlab Toolkit
+	"responses",	# A utility library for mocking out the `requests` Python library.
+	"respx",  # A utility for mocking out the Python HTTPX and HTTP Core libraries.
+	#	"retrofit",	# High-Performance ML Training, Scoring & Evaluation (Polars + GPU-Ready)
+	"returns",  # Make your functions return something meaningful, typed, and safe!
+	#	"rf-mcp",	# Robot Framework MCP Server - Natural Language Test Automation Bridge
+	"rich",  # Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal
+	"richtext-typst",	# Convert rich text JSON documents (from editors like ProseMirror, Quill, Slate) to Typst markup.
+	"rich-tracebacks", # automates the installation of Rich's traceback handler in Python programs. In comparison, rich-tracebacks is markedly simpler and agnostic to your virtual environment.
+	"ridgeplot",	# Beautiful ridgeline plots in python
+	"riskfolio-lib",  # Portfolio Optimization and Quantitative Strategic Asset Allocation in Python
+	"robotframework",  # Generic automation framework for acceptance testing and robotic process automation (RPA)
+	#	"robotframework-browser",  # Robot Framework Browser library powered by Playwright. Aiming for speed, reliability and visibility.
+	#	"robotframework-dependencysolver",  # A Robot Framework prerunmodifier for interdependent test cases execution.
+	#	"robotframework-dialogsplus",  # A drop-in enhancement for Robot Framework's Dialogs library with modern UI and extended user interaction keywords.
+	#	"robotframework-doctestlibrary",  # A library for Visual Document Testing
+	#	"robotframework-excelsage",  # A package for integrating Robot Framework with Excel using openpyxl and pandas
+	#	"robotframework-faker",  # Robot Framework wrapper for faker, a fake test data generator
+	#	"robotframework-heal",  # A Robot Framework Listener for library agnostic self-healing and smart recovery of tests
+	#	"robotframework-httpx",  # Robot Framework keyword library wrapper around httpx
+	#	"robotframework-jsonlib",  # robotframework-jsonlib is a Robot Framework test library for manipulating JSON Object. You can manipulate your JSON object using JSONPath
+	#	"robotframework-mailclient",  # Mail Client library for Robot Framework
+	#	"robotframework-metrics",  # Custom report for robot framework
+	#	"robotframework-mbt",  # Model-Based Testing in Robot framework with test case generation
+	#	"robotframework-nestedlogger",  # A Robot Framework library for nested keyword logging in Python implementations
+	#	"robotframework-oneflow",  # Robot Framework library to treat a test suite as a one flow, where if any test case will fail than it skip the rest of the tests
+	#	"robotframework-pabot",  # Parallel test runner for Robot Framework
+	#	"robotframework-pipe",  # Enhance Robot Framework with functional-style keyword chaining. Streamline test cases by piping output of one keyword as input to another, simplifying data flow and readability.
+	#	"robotframework-pythonlibcore",  # Tools to ease creating larger test libraries for Robot Framework using Python.
+	#	"robotframework-reqcov",  # Listener for generating requirement coverage reports for tests performed with Robot Framework
+	#	"robotframework-requests",  # Robot Framework keyword library wrapper around requests
+	#	"robotframework-scaffold",  # A scaffold tool for structuring Robot Framework projects with best practices.
+	#	"robotframework-stopwatch",  # Evaluate test case execution against its statistical average run time & user-configured timedelta.
+	#	"robotframework-tablelibrary",  # A Robot Framework library providing generic table keywords for several table file type like csv or excel.
+	#	"robotframework-testcontainers",  # Robot Framework keywords for Testcontainers.
+	#	"robotframework-testdoc",  # A CLI Tool to generate a Test Documentation for your RobotFramework Test Scripts.
+	#	"robotframework-testnotify",  # Send notifications to chat using Robot Framework.
+	#	"robotframework-tracer",  # OpenTelemetry distributed tracing for Robot Framework
+	#	"robotframework-visualizer",  # A Robot Framework library providing keywords for the visualization of 'date / value' objects.
+	"ropt",  # The ropt ensemble optimizer module
+	"rsconnect",  # The Posit Connect command-line interface.
+	"rsconnect-python",  # The Posit Connect command-line interface.
+	"rs-document",	# High-performance Rust implementation of LangChain's Document model and Unstructured.io's text cleaners for RAG applications
+	"ruff",  # An extremely fast Python linter and code formatter, written in Rust.
+	"runstats",  # Compute statistics and regression in one pass
+	"rumdl",	# A high-performance Markdown linter, written in Rust
+	"ruptures",  # Change point detection for signals in Python.
+	"rust-enum",  # Rust-style enums
+	"rustest",	# Rustest is a Rust-powered pytest-compatible test runner delivering 8.5× average speedup with familiar pytest syntax and zero setup
+	"rustworkx",  # A High-Performance Graph Library for Python
+	"rustworkx-utils",	# utils for graphs constructed with rustworkx.
+	"rustystats",  # Fast Generalized Linear Models with a Rust backend - statsmodels compatible
+	#	"rustybt",  # Modern Python backtesting engine built on Zipline-Reloaded, enhanced with Decimal precision, Polars data engine, and live trading capabilities
+	"ryp",  # R inside Python
+	#	"saffier",  # The only python ORM you will ever need.
+	"SALib",  # Tools for global sensitivity analysis. Contains Sobol', Morris, FAST, DGSM, PAWN, HDMR, Moment Independent and fractional factorial methods
+	#	"scalene",  # Scalene: A high-resolution, low-overhead CPU, GPU, and memory profiler for Python with AI-powered optimization suggestions
+	"schedule",	# Python job scheduling for humans. Run Python functions (or any other callable) periodically using a friendly syntax.
+	"schema",  # Simple data validation library
+	"scientisttools",  # Python library for multidimensional analysis, classification - clustering analysis and multidimensional analysis
+	"scikit-image",  # Image processing in Python
+	"scikit-learn",  # A set of python modules for machine learning and data mining
+	"scikit-network",  # Graph algorithms
+	"scikit-survival",  # Survival analysis built on top of scikit-learn
+	#	"scimesh",	# Systematic literature search library for scientific papers
+	"scipy",  # Fundamental algorithms for scientific computing in Python
+	#	"scitex",  # "scitex[all]",	#  toolkit for scientific research automation — with verification features to ease peer review. Literature search → Data analysis → Statistics → Figures → manuscript → Peer review simulation
+	#	"scitex-linter",	# AST-based linter enforcing SciTeX reproducible research patterns
+	#	"scitex-writer",	# LaTeX manuscript compilation system for scientific documents with MCP server
+	#	"scholarcli",	# command-line tool for conducting structured literature searches across multiple academic databases, with built-in support for systematic literature reviews.
+	"scholar-flux",	# nified API that simplifies querying academic databases, retrieving metadata, and performing comprehensive searches within scholarly articles, journals, and publications.
+	#	"scholarimpact",	# A bibliometric tool to analyse, visualise, and share your research impact, output and scholarly influence using Google Scholar and OpenAlex data
+	"scores",	# mathematical functions for the verification, evaluation and optimisation of forecasts, predictions or models.
+	#	"scityping",  # Serializable data types for science applications
+	"sdcpy",  # Scale Dependent Correlation in Python
+	#	"sdmetrics",  # Metrics for Synthetic Data Generation Projects
+	#	"sdgym",  # Benchmark tabular synthetic data generators using a variety of datasets
+	#	"sdv",  # Generate synthetic data for single table, multi table and sequential data
+	"seaborn",  # Statistical data visualization
+	"serialite",  # A serialization library for Python
+	"serializable",  # Base class with serialization helpers for user-defined Python objects
+	"serializable-datastructure",  # Serializable Datastructure is a Python library that allows you to convert a Python object into any data file format and vice versa (currently JSON & YAML).
+	"serializable-excel",  # A user-friendly Python library for seamless bidirectional conversion between Excel spreadsheets and Pydantic models
+	"seriesdistancematrix",  # Flexible time series analysis library implementing Matrix Profile related functionality.
+	"serilux",  # A powerful serialization framework for Python objects with automatic type registration and validation
+	"shaolin",  # Interactive visualization with holoviews and panel
+	"shiny",  # A web development framework for Python.
+	"shiny_adaptive_filter",  # Shiny for Python module that implments UI components that are aware and adapts to other component selections.
+	"shiny-calendar",  # A calendar component for Python Shiny using FullCalendar
+	#	"shinychat",  # An AI Chat interface for Shiny apps.
+	"shiny-coloris",  # Wrapper around js lib Coloris for use in Shiny.
+	#	"shinyecharts",  # ECharts for Shiny
+	"shiny-ketcher",  # Ketcher React output binding and message handlers for Shiny for Python.
+	"shinylive",  # Run Shiny applications running Python in the browser.
+	"shinymedia",  # Extends the Shiny web framework with controls for multimedia input/output.
+	#	"shinyobservable",  # Observable Notebooks and Cells in Shiny
+	"shiny-sortable",  # A Python library to add sortable functionality to Shiny UI elements
+	"shinyswatch",  # Bootswatch + Bootstrap 5 themes for Shiny.
+	"shiny-tail",  # A package to use Tailwind CSS in Shiny for Python
+	"shiny-treeview",  # A Shiny for Python extension providing a treeview component
+	"shiny-validate",  # Input Validation for Shiny apps
+	"shinywidgets",  # Render ipywidgets in Shiny applications
+	# 	"SHiP-framework",  # Center-based hierarchical clustering framework using 3 steps: compute a Similarity, build an Hierarchy, and lastly extract a clustering using a Partitioning method.
+	"shirokumas",  # A set of scikit-learn style transformers for Polars
+	"showexception",  # Pretty print exception details
+	"showman",	# Eval & show typst code outputs inline with their source
+	"simdec",  # Sensitivity analysis using simulation decomposition
+	"simplejson",  # Simple, fast, extensible JSON encoder/decoder for Python
+	#	"Sirchmunk", # Sirchmunk: From raw data to self-evolving real-time intelligence.
+	"skfolio",  # Portfolio optimization built on top of scikit-learn
+	"sklearo",  # A versatile Python package featuring scikit-learn like transformers for feature preprocessing, compatible with all kind of dataframes thanks to narwhals.
+	#	"skorch",  # scikit-learn compatible neural network library for pytorch
+	#	"skpro",	# A unified framework for tabular probabilistic regression, time-to-event prediction, and probability distributions in python
+	"sktime",  # A unified framework for machine learning with time series
+	#	"slearn",  # A package linking symbolic representation with sklearn for time series prediction
+	"sliderplot",  # Turn a function into an interactive plot with a single line of code
+	"sliq",	# Sliq automatically fixes dataset schema issues, missing values, duplicate rows, and formatting errors so data professionals can get clean data in minutes, not hours or days.
+	#	"sloppy-json",  # A forgiving JSON parser that recovers broken JSON from LLM outputs
+	#	"smart-errorx",	# error handler library and help to detect the error and after detect the error give the solution of error.
+	#	"smf-mcp",	# Enterprise-grade MCP framework built on FastMCP
+	"SmileError",  #   python error class to make it simple structure
+	#	"solvor", #	Solvor all your optimization needs.
+	#	"spearmint",  # Refreshing hypothesis testing in python!
+	#	"spearmint-framework",  # An experiment framework for easily testing multiple configurations of your code.
+	#	"speedy-utils",	# streamline common programming tasks such as caching, parallel processing, file I/O, and data manipulation. It provides a collection of decorators, functions, and classes to enhance productivity and performance in your Python projects.
+	"sphinx",  # Python documentation generator
+	"spin",  # Developer tool for scientific Python libraries
+	"splink",	# package for probabilistic record linkage (entity resolution) that allows you to deduplicate and link records from datasets that lack unique identifiers.
+	#	"sql2mermaid",	# Convert SQL table dependencies to mermaid.js
+	"sqlmodel",	# SQLModel, SQL databases in Python, designed for simplicity, compatibility, and robustness.
+	"sqlmodel-ext",	# Extended SQLModel infrastructure: smart metaclass, async CRUD mixins, polymorphic inheritance, optimistic locking, relation preloading, and reusable field types.
+	"srsly",  # Modern high-performance serialization utilities for Python
+	"stagecraft",  # A Python library for building robust ETL pipelines with declarative stages and data flow management
+	"starlette",  # The little ASGI library that shines.
+	"statsforecast",  # Time series forecasting suite using statistical models
+	"statsmodels",  # Statistical computations and models for Python
+	"stheno",	# Implementation of Gaussian processes in Python
+	#	"stirrup",	# The lightweight foundation for building agents
+	"stockstats",	# Supply a wrapper ``StockDataFrame`` based on the ``pandas.DataFrame`` with inline stock statistics/indicators support.
+	#	"stockstats-polars", 	# Namespace extension of Polars with stock statistics/indicator calculation helper
+	#	"streamjoy",  # Enjoy animating images into GIFs and MP4s!
+	#	"streamlit",  # A faster way to build and share data apps
+	#	"streamlit-achievements",	# Streamlit component that lets you have achievements in your application
+	#	"streamlit-anywidget",	# Streamlit component that enables anywidget support.
+	#	"streamlit-autosuggest",	# A Streamlit component for a search bar with autosuggestions
+	#	"streamlit-bokeh",  # Streamlit component that allows you to render Bokeh charts
+	#	"streamlit-bridge",	# A hidden streamlit component that allows client side (javascript) to trigger events on the server side (python) and vice versa
+	#	"streamlit-card",  # A streamlit component, to make UI cards
+	#	"streamlit-carousel",	# A Streamlit implementation of the React Bootstrap Carousel component.
+	#	"streamlit-chrono",	#	Streamlit component that allows you to add Chrono Timeline
+	#	"streamlit-concurrency",	# Easier and safer concurrency for Streamlit
+	#	"streamlit-cytoscape",	# A flexible, customizable, Streamlit component for interactive graph visualization using Cytoscape.js
+	#	"streamlit-date-events",  # An advanced Streamlit date input component with event markers and multiple display modes
+	#	"streamlit-donut",	# A Streamlit component for rendering donut metrics/visuals
+	#	"streamlit-downloader",	# Streamlit component to download a file programmatically, without user input.
+	#	"streamlit-echarts5",	# Echarts5 custom component for Streamlit
+	#	"streamlit-ext",	# Small handy widgets for streamlit, e.g. download button which won't cause rerun, set page width
+	#	"streamlit-fastselectbox",	# Streamlit component for fast loading selectbox
+	#	"streamlit-feedback",	# Streamlit component that allows you to collect user feedback in your apps
+	#	"streamlit-flexnav",	# A modular navigation framework for building multi-page Streamlit applications.
+	#	"streamlit-float",	# Fix Streamlit containers relative to viewport instead of page
+	#	"streamlit-flowsheet",	# A Streamlit component for rendering process flowsheet diagrams with interactive selection
+	#	"streamlit-js-eval",  # A custom Streamlit component to evaluate arbitrary Javascript expressions.
+	#	"streamlit-keyup",  # Text input that renders on keyup
+	#	"streamlit-langgraph",	# A Streamlit package for building multiagent web interfaces with LangGraph
+	#	"streamlit-layoutr",	# Streamlit component for graph visualization
+	#	"streamlit-lets-plot-comp",	# A Streamlit component for displaying Lets-Plot charts
+	#	"streamlit-lexical",	# Streamlit component that allows you to use Meta's Lexical rich text editor
+	#	"streamlit-markdown",	# A Streamlit component to display markdown, which supports table, code switch, LaTeX, mermaid, and more.
+	#	"streamlit-mermaid-component",	# A component that implements mermaid
+	#	"streamlit-mermaid-interactive", 	# Interactive Mermaid diagram component for Streamlit with click event handling
+	#	"streamlit-ollama",	# Utilities to easily integrate Ollama models within Streamlit apps.
+	#	"streamlit_pandera", 	# Streamlit Data Validator Tool helps you validate your data with dataframe-type objects
+	#	"streamlit-plugins",	# Components and Frameworks to give new features to streamlit
+	#	"streamlit-react-components",  # Reusable React-based Streamlit components with Tailwind CSS styling
+	#	"streamlit-redirect",	# A custom streamlit component for performing a page redirect programmatically. This is helpful since it is often required to perform a redirect, for instance after a button click or login. The streamlit-redirect component solves this by inserting a <meta> tag which directly triggers a browser redirect
+	#	"streamlit-searchbox",	# Autocomplete Searchbox that dynamically updates suggestions based on a provided function.
+	#	"streamlit-surfside-labs-ui",	# Animated background effects for Streamlit applications - Add falling snow, confetti, fireworks, and more to your Streamlit apps with just one line of code!
+	#	"streamlit-survey",  # Survey components for Streamlit apps
+	#	"streamlit-swipecards",	# dd interactive swipeable cards to your app. Supports both image cards and table row swiping with cell highlighting.
+	#	"streamlit-theta",	# Comprehensive visual editors suite for Streamlit: presentations, documents, spreadsheets, charts, images, forms, mind maps, diagrams, newsletters, and more. Professional-grade editing tools for modern web applications.
+	#	"streamlit-tile",	# A customizable tile component for Streamlit apps that provides a button-like interface with a modern tile appearance.
+	#	"streamlit-toggle-switch",  # Creates a customizable toggle
+	#	"streamlit-TTS",	# Streamlit component providing tools to convert text to speech and play audio directly in the browser
+	#	"streamlit-vertical-slider",  # Creates a customizable vertical slider
+	"structlog",	# Structured Logging for Python
+	"structlog-config",	# A comprehensive structlog configuration with sensible defaults for development and production environments, featuring context management, exception formatting, and path prettification.
+	"structlog-extras",	# Various structlog additions, mainly focused on better stdlib integration
+	"structlog-overtime",	# Miscellaneous utilities for structlog
+	"structlog-pretty",	# A collection of structlog processors for prettier output
+	"stumpy",  # A powerful and scalable library that can be used for a variety of time series data mining tasks
+	# 	"summarease",  # A package that provides quick summaries of datasets, including data types, missing value counts, and basic statistics.
+	"sumry",	# A fast and user-friendly CLI tool for summarizing various data file formats ( CSV, Excel, GeoJSON, and Shapefiles) with rich terminal output.
+	"supypowers",	# Run self-contained uv Python scripts as callable, schema-documented 'superpowers'.
+	"swapfont",  # A tool for font replacement in PDFs.
+	"sybil",	# Automated testing for the examples in your code and documentation.
+	"sybil-extras",	# Additions to Sybil, the documentation testing tool.
+	#	"sygra",	# Graph-oriented Synthetic data generation Pipeline library
+	#	"symbolfit",  # Automatic parametric modeling with symbolic regression
+	#	"symlik",	# define statistical models symbolically and automatically derives everything needed for inference: score functions, Hessians, Fisher information, standard errors, and maximum likelihood estimates.
+	#	"sympy",  # Computer algebra system (CAS) in Python
+	#	"synalinks",	#	open-source neuro-symbolic framework that makes it simple to create, train, evaluate, and deploy advanced LM-based applications, including RAGs, autonomous agents, and self-evolving reasoning systems.
+	#	#	"synesis",	# The confluence of information into intelligence - A DSL compiler that transforms qualitative research annotations into canonical knowledge structures
+	#	"synthcity",	# Synthetic data generator and evaluator!
+	#	"synth-data-eval",	# Comprehensive evaluation framework for tabular synthetic data generators
+	#	"synthetic-data-crafter", 	# Generate hyper-realistic synthetic data at scale — 750+ field types, real-world distributions, relational schemas, and one-click export to CSV, JSON, Parquet, SQL, Excel, Avro, and more.
+	#	"synthetic-data-generators",	# Helper methods for generating synthetic data for testing and development.
+	#	"synthetic-data-kit",	# Tool for generating high quality Synthetic datasets
+	#	"synthetic-data-maker",	# A powerful CLI tool to generate realistic synthetic data for testing and development
+	# 	"synthetic-data-metrics",	# evaluating synthetic data quality across a wide range of data types (image, tabular, time series, language) and approaches to evaluation.
+	# 	"synthetic-eval",	# Package for Evaluation of Synthetic Tabular Data Quality
+	#	"synthetic-generator",	# A comprehensive Python library for generating synthetic data with various distributions, correlations, and constraints for machine learning and data science applications.
+	#	"synthopt",	# A package for synthetic data generation, evaluation and optimisation.
+	#	"synthyverse",	# Synthetic data generation and evaluation library
+	#	"tabeval",	# A comprehensive Python framework for evaluating synthetic tabular data generation methods
+	#	"table-diff",  # Tool to compare tables
+	"tablescope",  # View your data frames in a browser
+	#	"tabpfn-time-series",	# Zero-shot time series forecasting with TabPFNv2
+	#	"tabstruct",	# end‑to‑end benchmark for tabular data generation, prediction, and evaluatio
+	"taskbrain",  # A simple and powerful task scheduler.
+	"tastymap",  # Color palettes for your palate
+	#	"tbhandler", # Automated detailed traceback visualization
+	"tblib",  # Serialization library for Exceptions and Tracebacks. Create traceback objects from strings. Serialize tracebacks to/from plain dicts.
+	"tcapy",  # Tranasction cost analysis library
+	"tea-tasting",	#	statistical analysis of A/B tests.
+	#	"temporian",	# feature engineering of temporal data, focusing on preventing common modeling errors and providing a simple and powerful API, a first-class iterative development experience, and efficient and well-tested implementations of common and not-so-common temporal data preprocessing functions.
+	"tenacity",	# general-purpose retrying library to simplify the task of adding retry behavior to just about anything.
+	"tenacity-error-feedback",	# Propagate error context between tenacity retry attempts
+	#	"tenforty",	# Library to compute US federal taxes, and state taxes for some states.
+	"testit-adapter-behave",  # Behave adapter for Test IT
+	"TestiPy",  # Python test selection/execution/reporting tool
+	"tex2typ",	# A Python CLI tool for converting LaTeX equations into Typst equations
+	"tex2typst",	# A Python wrapper for tex2typst, providing seamless conversion between LaTeX/TeX math and Typst format
+	"textual",	# Modern Text User Interface framework
+	#	"tf-q-finance",	# High-performance TensorFlow library for quantitative finance. (Making it work again)
+	#	"tidypolars",  # Tidy interface to polars
+	#	"tidypolars4sci",  # Tidyverse-like functions for python polars with extended functionalities for science.
+	# 	"tidy-viewer-py",  # A cross-platform data pretty printer that uses column styling to maximize viewer enjoyment. Supports CSV, Parquet, Pandas, and Polars DataFrames with automatic data type detection and display.
+	"tigramite",	# Tigramite causal inference for time series
+	"tigramite-fast", 	# Tigramite causal inference for time series
+	"timebasedcv",  # Time based cross validation
+	#	"timecopilot",	# The GenAI Forecasting Agent · LLMs × Time Series Foundation Models ((Amazon Chronos, Salesforce Moirai, Google TimesFM, Nixtla TimeGPT, etc.).)
+	#	"timely-beliefs",	# Data modelled as beliefs (at a certain time) about events (at a certain time).
+	"time-machine",  # Travel through time in your tests.
+	#	"timemachines",  # Evaluation and standardization of autonomous time series prediction
+	"time-split",	# Time-based k-fold validation splits for heterogeneous data.
+	#	"tinygrad",  # You like pytorch? You like micrograd? You love tinygrad!
+	#	"tinygrad-tools",  # You like pytorch? You like micrograd? You love tinygrad!
+	#	"tirex-ts",		# A pre-trained Time Series Forecasting Model based on xLSTM supporting zero-shot forecasting
+	#	"tisa-finance",  # Transform-Invariant Segment Alignment (TISA) for financial time series
+	#	"tlogg",  # A fast, advanced log explorer
+	#	"toon-python",  # Token-Oriented Object Notation (TOON) is a compact, human-readable format designed for passing structured data to Large Language Models with significantly reduced token usage. This specification...
+	#	"toonkit",  # Production-grade JSON ↔ TOON converter with multi-model tokenization benchmarks and streaming support
+	#	"toontools",  # Conversion utilities between JSON, YAML, TOML and TOON (Token-Oriented Object Notation)
+	#	"toonverter",  # Token-Optimized Object Notation (TOON) converter for efficient LLM data serialization
+	#	"torch",  # Tensors and Dynamic neural networks in Python with strong GPU acceleration
+	#	"torchmetrics",  # PyTorch native Metrics
+	#	"torchrl",	# A modular, primitive-first, python-first PyTorch library for Reinforcement Learning
+	"tox",  # tox is a generic virtualenv management and test command line tool
+	"tox-toml-fmt",	# Apply a consistent format to your tox.toml file with comment support.
+	"tqdm",	# Fast, Extensible Progress Meter
+	"traceback-with-variables",  # Adds variables to python traceback. Debug reasons of exceptions by logging or pretty printing colorful variable contexts for each frame in a stacktrace, showing every value.
+	"traces",  # A Python library for unevenly-spaced time series analysis
+	"tracor",   # A tool for running Python scripts line by line with error handling and reporting.
+	"transformplan",	# Safe, reproducible data transformations with built-in auditing and validation
+	"trio",  # A friendly Python library for async concurrency and I/O
+	"truthound",	# data quality validation framework built on Polars, a Rust-based DataFrame library. The framework provides zero-configuration validation through automatic schema inference and supports a wide range of validation scenarios from basic schema checks to statistical drift detection.
+	"truthound-dashboard", 	# raphical interface for managing data sources, executing validations, tracking historical results, scheduling automated checks, and configuring notifications
+	"truthound-orchestration",	#  generic data quality integration framework that provides adapters for major workflow orchestration platforms. While Truthound serves as the default data quality engine, the framework supports any data quality engine through its Protocol-based architecture.
+	#	"tsagentkit",	# Robust execution engine for time-series forecasting agents
+	#	"tsai",	# Practical Deep Learning for Time Series / Sequential Data library based on fastai & Pytorch
+	#	"tsbootstrap",  # A Python package to generate bootstrapped time series
+	"tsdisagg",  # Temporal Disaggregation of Time Series Data in Python
+	#	"tsfmecb",	# tsfm provides an easy interface to use TimeSeries Foundational Models.
+	#	"tsforecasting",	# comprehensive and integrated pipeline designed to Automate Time Series Forecasting applications
+	"tsfresh",  # tsfresh extracts relevant characteristics from time series
+	#	"tsfuse",	# Automated feature construction for multiple time series data
+	"tslearn",  # A machine learning toolkit dedicated to time-series data
+	#	"tsln",  # Time-Series Lean Notation - 74% token reduction for LLMs
+	"ts-stat-tests",	# A suite of statistical tests for time-series data.
+	"tubular",	# Python package implementing ML feature engineering and pre-processing for polars or pandas dataframes.
+	#	"txtai",	# All-in-one open-source AI framework for semantic search, LLM orchestration and language model workflows
+	"ty",  # An extremely fast Python type checker, written in Rust.
+	#	"typ2docx",	# A tool to convert Typst project to Microsoft Word format.
+	"typelib",  # A toolkit for marshalling, unmarshalling, and runtime validation leveraging type annotations.
+	"typed-envs",  # Typed environment variables for python applications.
+	"typed-models",  # Strongly typed, lightweight, serializable models for Python
+	"typedown",	# Progressive Formalization for Markdown using Pydantic and Pytest
+	"typed-pytest",  # Type-safe mocking for pytest - preserve original type hints while using mock features
+	"type-enum",  # Concise sum types in Python.
+	"TypePigeon",  # Python type converter
+	#	"types-PySide6",	# The most accurate stubs for PySide6
+	#	"typ2docx",	# A tool to convert Typst project to Microsoft Word format.
+	"typsphinx",	# Sphinx extension for Typst output
+	"typst",  # Python binding to typst, a new markup-based typesetting system that is powerful and easy to learn.
+	#	"typst_marimo",	# Typst extension, adding support for generating images from a companion Marimo notebook
+	"typst-pagemaker",	# Structured document-to-page layout system for Typst with explicit positioning and professional typography
+	"typstpy",  # Python interface to generate executable Typst code.
+	"typst-pyimage",	# Typst extension, adding support for generating figures using inline Python code
+	#	"typstwriter",	# An integrated editor for the typst typesetting system.
+	"tyx-schema",	# Safe Pydantic schema for interacting with TyX configurations
+	#	"ucup",	# Unified Cognitive Uncertainty Processing Framework
+	"ui-coverage-tool",  # UI Coverage Tool is an innovative, no-overhead solution for tracking and visualizing UI test coverage — directly on your actual application, not static snapshots.
+	"ultranest",	# Fit and compare complex models reliably and rapidly. Advanced Nested Sampling.
+	"ultraplot",  # A succinct matplotlib wrapper for making beautiful, publication-quality graphics.
+	#	"unifex",	# Unified extraction library for PDF, OCR, and LLM-based document processing
+	"unique-namer",  # Generate unique, human-readable, and memorable names or identifiers
+	#	"universal-agent-context",	# A universal system for discovering, translating, and managing AI agent capabilities
+	"untruncate-json",  # Cleans up truncated json files.
+	#	"upd-agent-skill",	# CLI tool for updating Claude Code, Codex, OpenCode, Amp, Clawdbot agent skills.
+	"uplid",	# Universal Prefixed Literal IDs - type-safe, human-readable identifiers
+	"Uplink",  # A Declarative HTTP Client for Python.
+	# 	"ures-visual",  # A comprehensive, multi-backend visualization library designed for scientific research, data analysis, and machine learning, built on Polars DataFrames with matplotlib/seaborn, plotly, and HoloViews...
+	"uv-bump",	# Bump pyproject.toml dependency minimum versions to latest feasible versions.
+	"uvicorn[standard]",  # The lightning-fast ASGI server.
+	"uvicorn-loguru-integration",  # Code to integrate uvicorn.run with Loguru logging
+	#	"uvloop",  # Fast implementation of asyncio event loop on top of libuv
+	"valframe",  # Create validation classes for your data
+	"validators",  # Python Data Validation for Humans
+	"vanna",	# Generate SQL queries from natural language
+	"vectorbt",  # Python library for backtesting and analyzing trading strategies at scale
+	"vectorwrap",	# Universal vector search wrapper for Postgres, MySQL, MariaDB, SQLite, DuckDB, ClickHouse, Redis, RethinkDB (pgvector, HeatWave, sqlite-vss, DuckDB VSS, ClickHouse ANN, RediSearch, Real-time changefeeds)
+	#	"venai",	# VenusAI is a secure and extensible Agent framework built for modern AI applications.
+	#	"vibe-aigc",	# A New Paradigm for Content Generation via Agentic Orchestration
+	#	"vidurai", 	# local background service that indexes your development context. It bridges your local codebase with AI tools (like Claude, Cursor, and VS Code) without uploading your source code to third-party vector clouds.
+	#	"violit",	# Violit: Faster than Light, Beautiful as Violet. The High-Performance Python Web Framework (Streamlit Alternative with Zero Rerun).
+	"visual-decimal",	# Evaluate and pretty print mathematical expressions
+	"voluptuous",   #  Python data validation library. It is primarily intended for validating data coming into Python as JSON, YAML, etc.
+	#	"vowel", # A modular evaluation framework for testing functions with YAML-based specifications
+	#	"voxagent",	# A lightweight, model-agnostic LLM provider abstraction with streaming and tool support
+	"vsl-json",  # Compact JSON formatter
+	"watchfiles",  # Simple, modern and high performance file watching and code reload in python.
+	"weightedcalcs",	# Pandas-based utility to calculate weighted means, medians, distributions, standard deviations, and more.
+	"weightipy",	# modernized, lightweight, and high-performance library for weighting survey data using the RIM (iterative raking) algorithm.
+	"wigglystuff",  # Collection of Anywidget Widgets
+	"wrapt",  # Module for decorators, wrappers and monkey patching.
+	"xarray-regressions",  # pytest-regressions plugin for xarray
+	"xlsxturbo",	# High-performance Excel writer with automatic type detection (pandas, polars, CSV)
+	"xlwings",  # Make Excel fly: Interact with Excel from Python and vice versa.
+	"xlsxwriter",	# XlsxWriter can be used to write text, numbers, formulas and hyperlinks to multiple worksheets and it supports features such as formatting and many mor
+	"xorq",	#	Data processing library built on top of Ibis and DataFusion to write multi-engine data workflows.
+	"xplor",  # A unified framework for Operation Research modeling with polars
+	#	"xrtm-forecast",	# Institutional-grade modular engine for generative forecasting and agentic reasoning.
+	"xskillscore",  # Metrics for verifying forecasts
+	#	"yamlql",	# Query YAML files with SQL. Transform any YAML structure into a queryable database instantly.
+	"yapf", # A formatter for Python code
+	"yappi",  # Yet Another Python Profiler
+	#	"ydata-synthetic",	# Synthetic data generation methods with different synthetization methods.
+	#	"ydf",	# YDF (short for Yggdrasil Decision Forests) is a library for training, serving, evaluating and analyzing decision forest models such as Random Forest and Gradient Boosted Trees.
+	"yfinance",  # Download market data from Yahoo! Finance API
+	#	"zaturn",	# Your Co-Pilot For Data Analytics & Business Insights
+	"zensical",  # A modern static site generator built by the creators of Material for MkDocs. Write your documentation in Markdown - searchable, customizable, more than 60 languages, for all devices.
+	"zipline-reloaded",  # A Pythonic backtester for trading algorithms
+	#	"zoopipe", 	# ean, ultra-high-performance data processing engine for Python. It leverages a 100% Rust core to handle I/O and orchestration, while keeping the flexibility of Python for schema validation (via Pydantic) and custom data enrichment (via Hooks).
+]
+
+# ==============================================================================
+# PYTEST - Testing Configuration
+# ==============================================================================
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# Additional command-line options
+addopts = [
+    "-p", "no:langsmith",           # Disable langsmith plugin
+    "-ra",                          # Show extra test summary info for all except passed
+    "--strict-markers",             # Fail on unknown markers
+    "--strict-config",              # Fail on config parsing warnings
+    "-v",                           # Verbose output
+    "--tb=short",                   # Shorter traceback format
+    "--color=yes",                  # Force color output
+]
+
+# Test markers for categorization
+markers = [
+    "unit: marks tests as unit tests (fast, no external dependencies)",
+    "integration: marks tests as integration tests (may use external resources)",
+    "slow: marks tests as slow (excluded from regular test runs with -m 'not slow')",
+    "regression: marks tests as regression tests (compare against known values)",
+    "smoke: marks tests as smoke tests (quick sanity checks)",
+    "e2e: marks tests as end-to-end tests (full workflow tests)",
+    "parametrize: marks tests using parametrization",
+    "wip: marks tests as work-in-progress (can be skipped)",
+]
+
+# Filter warnings during test runs
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+    "error::pytest.PytestUnraisableExceptionWarning",
+]
+
+# Minimum pytest version required
+minversion = "8.0"
+
+# Logging configuration for tests
+log_cli = false
+log_cli_level = "WARNING"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(name)s: %(message)s"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+# Console output width
+console_output_style = "progress"
+
+# Fail fast settings (uncomment to enable)
+# norecursedirs = [".git", ".tox", "dist", "build", "*.egg", "venv", ".venv"]
+
+# Async mode for pytest-asyncio (if used)
+asyncio_mode = "auto"
+
+# ==============================================================================
+# RUFF - Linting and Formatting Configuration
+# ==============================================================================
+[tool.ruff]
+# Target Python version
+target-version = "py312"
+
+# Same line length as Black
+line-length = 100
+
+# Exclude commonly ignored directories
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "*.egg-info",
+    ".pytest_cache",
+    "migrations",
+]
+
+# Files with these extensions will be checked
+include = ["*.py", "*.pyi", "*.pyx", "*.ipynb"]
+
+# Respect gitignore files
+respect-gitignore = true
+
+# Fix violations automatically when possible (use with caution)
+fix = false
+
+# Show fixes in output
+show-fixes = true
+
+# Output format
+output-format = "concise"
+
+# Allow imports relative to these directories
+src = ["src", "tests"]
+
+# Force exclusion even if files passed explicitly
+force-exclude = true
+
+[tool.ruff.lint]
+# Allow unused variables when underscore-prefixed
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Enable comprehensive rule sets for code quality
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # Pyflakes
+    "I",      # isort (import sorting)
+    "N",      # pep8-naming
+    "D",      # pydocstyle (docstrings)
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "PT",     # flake8-pytest-style
+    "SIM",    # flake8-simplify
+    "TCH",    # flake8-type-checking
+    "RUF",    # Ruff-specific rules
+    "NPY",    # NumPy-specific rules
+    "PD",     # pandas-vet
+    "PERF",   # Perflint (performance)
+    "FURB",   # refurb (modernization)
+    "LOG",    # flake8-logging
+    "G",      # flake8-logging-format
+    "TID",    # flake8-tidy-imports
+    "ARG",    # flake8-unused-arguments
+    "PLC",    # Pylint convention
+    "PLE",    # Pylint errors
+    "PLW",    # Pylint warnings
+    "FLY",    # flynt (f-string conversion)
+    "ERA",    # eradicate (commented-out code)
+    "S",      # flake8-bandit (security)
+    "A",      # flake8-builtins
+    "COM",    # flake8-commas
+    "C90",    # mccabe complexity
+    "PIE",    # flake8-pie
+    "T20",    # flake8-print
+    "Q",      # flake8-quotes
+    "RSE",    # flake8-raise
+    "RET",    # flake8-return
+    "SLF",    # flake8-self
+    "SLOT",   # flake8-slots
+    "ISC",    # flake8-implicit-str-concat
+    "ICN",    # flake8-import-conventions
+    "DTZ",    # flake8-datetimez
+    "FA",     # flake8-future-annotations
+    "ANN",    # flake8-annotations (type hints)
+    "BLE",    # flake8-blind-except
+    "FBT",    # flake8-boolean-trap
+    "INP",    # flake8-no-pep420
+    "YTT",    # flake8-2020
+]
+
+ignore = [
+    # Docstring style conflicts - choose one style
+    "D212",   # Multi-line docstring summary should start at the first line (conflicts with D213)
+    "D203",   # 1 blank line required before class docstring (conflicts with D211)
+    "D105",   # Missing docstring in magic method
+    "D107",   # Missing docstring in __init__
+    
+    # Line length handled by formatter
+    "E501",   # Line too long
+    
+    # pytest style preferences
+    "PT006",  # pytest-parametrize-names-wrong-type
+    "PT007",  # pytest-parametrize-values-wrong-type
+    "PT011",  # pytest.raises too broad
+    
+    # Complexity - set explicit threshold instead
+    "C901",   # Function is too complex (use mccabe threshold)
+    
+    # Annotations - can be too strict for gradual typing
+    "ANN101", # Missing type annotation for self in method
+    "ANN102", # Missing type annotation for cls in classmethod
+    "ANN401", # Dynamically typed expressions (Any) are disallowed
+    
+    # Boolean arguments - sometimes necessary
+    "FBT001", # Boolean positional arg in function definition
+    "FBT002", # Boolean default value in function definition
+    
+    # Too noisy for this project
+    "ERA001", # Found commented-out code
+    "T201",   # print found (we use logging but print is okay for scripts)
+    "S101",   # Use of assert (needed for tests)
+    "INP001", # Implicit namespace package (no __init__.py)
+    
+    # Conflicts with project naming convention (QWIM uses UPPERCASE acronyms)
+    "N802",   # Function name should be lowercase
+    "N806",   # Variable in function should be lowercase
+    "N815",   # Variable in class scope should not be mixedCase
+    
+    # Self access - sometimes useful for clarity
+    "SLF001", # Private member accessed
+    
+    # pandas-specific that conflicts with Polars usage
+    "PD901",  # df is a bad variable name (we use Polars, not pandas)
+]
+
+# Allow autofix for all enabled rules (when `--fix` is passed)
+fixable = ["ALL"]
+unfixable = []
+
+# Maximum complexity threshold (mccabe)
+[tool.ruff.lint.mccabe]
+max-complexity = 12
+
+# Per-file rule ignores
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    "F401",   # Unused imports (re-exports are intentional)
+    "E402",   # Module level import not at top of file
+    "D104",   # Missing docstring in public package
+]
+"tests/*" = [
+    "D",      # Ignore all docstring rules in tests
+    "NPY",    # Ignore NumPy rules in tests
+    "S101",   # Use of assert is fine in tests
+    "ANN",    # Type annotations not required in tests
+    "ARG",    # Unused arguments (fixtures)
+    "PLR2004",# Magic value comparison
+    "SLF001", # Private member access (testing internals)
+    "N999",   # Allow UPPERCASE acronyms in test module names (test_annuity_SPIA etc.)
+    "N801",   # Allow CamelCase_with_underscores class names (project convention)
+    "N803",   # Allow uppercase fixture names matching class conventions
+    "G004",   # Allow f-strings in logging (loguru supports it)
+    "PLC0415",# In-function imports for optional-dependency guards (try/except ImportError)
+    "DTZ011", # datetime.date.today() usage acceptable in test assertions
+]
+"conftest.py" = [
+    "D100",   # Missing docstring in public module
+    "D103",   # Missing docstring in public function
+]
+"src/utils/data_utils/generate_data_legacy.py" = [
+    "NPY002", # Allow legacy numpy random API for data generation (old path, kept for compat)
+]
+"src/dashboard/main_App.py" = [
+    "N999",   # Module name main_App follows project convention
+    "E402",   # Module level imports delayed for UTF-8 encoding setup
+    "PLC0415",# Imports inside functions for error handling
+    "RUF001", # Unicode info icon character is intentional
+    "S104",   # Binding to all interfaces in production is intentional
+]
+"src/dashboard/**" = [
+    "RUF001", # Information icon (ℹ) and other unicode in UI strings
+    "RUF002", # Information icon (ℹ) in docstrings
+    "N801",   # Class names with underscores (Error_*, Client_*) - Project Convention
+    "N803",   # Argument names (polars_DF, input_ID) - Project Convention
+    "F405",   # Star imports (from .utils import *) - Required by Shiny pattern
+    "S104",   # Binding to all interfaces is intentional for dashboard
+    "F821",   # Forward references in Shiny modules (input, output, session)
+    "S110",   # try-except-pass is used for optional feature detection/fallback
+    "PLC0415",# Local imports for performance optimization and circular refs
+]
+"src/dashboard/shiny_utils/reactives_shiny.py" = [
+    "BLE001", # Blind except necessary for reactive operations
+    "F821",   # Forward references in reactive contexts
+    "PLC0415",# Dynamic imports for error recovery
+]
+"src/dashboard/shiny_utils/utils_*.py" = [
+    "BLE001", # Defensive exception handling in utilities
+    "ARG001", # Unused Shiny callback parameters (input, output, session)
+    "PLC0415",# Dynamic imports for optional dependencies
+    "S110",   # try-except-pass for optional operations
+    "A002",   # 'input' parameter shadows builtin (required by Shiny)
+    "B904",   # Exception chaining in utility error handling
+]
+"src/dashboard/shiny_tab_clients/*.py" = [
+    "ARG001", # Unused Shiny server parameters required by framework
+    "F821",   # Forward references in Shiny modules
+    "BLE001", # Error recovery in client data handling
+    "ANN202", # Private function return types in Shiny callbacks
+    "A002",   # 'input' parameter shadows builtin (required by Shiny)
+    "B904",   # Exception chaining in UI error handling
+]
+"src/dashboard/shiny_tab_portfolios/*.py" = [
+    "ARG001", # Unused Shiny server parameters required by framework
+    "F821",   # Forward references in Shiny modules
+    "BLE001", # Error recovery in portfolio calculations
+    "ANN202", # Private function return types in Shiny callbacks
+    "A002",   # 'input' parameter shadows builtin (required by Shiny)
+    "B904",   # Exception chaining in UI error handling
+]
+"src/dashboard/shiny_tab_*/tab_*.py" = [
+    "ARG001", # Unused Shiny server parameters required by framework
+    "F821",   # Forward references in Shiny modules
+    "BLE001", # Error recovery in tab logic
+    "A002",   # 'input' parameter shadows builtin (required by Shiny)
+]
+"src/dashboard/shiny_tab_*/subtab_*.py" = [
+    "ARG001", # Unused Shiny server parameters required by framework
+    "F821",   # Forward references in Shiny modules
+    "PD008",  # Pandas .at usage for data access
+    "BLE001", # Error recovery in subtab logic
+    "ANN202", # Private function return types in Shiny callbacks
+    "A002",   # 'input' parameter shadows builtin (required by Shiny)
+    "B904",   # Exception chaining in UI error handling
+]
+"src/dashboard/shiny_reporting/*.py" = [
+    "BLE001", # Error recovery in report generation
+    "S110",   # try-except-pass for optional formatting
+]
+"src/dashboard/reporting/report_QWIM.py" = [
+    "N999",   # Allow UPPERCASE acronyms in module name (project convention: report_QWIM)
+    "BLE001", # Error recovery in report pipeline (intentional broad catch)
+    "ARG001", # Unused Shiny callback parameter (kept for API compatibility)
+    "DTZ011", # datetime.date.today() is intentional for local report date
+    "S603",   # subprocess call to typst compiler (trusted local binary)
+    "S607",   # partial executable path for typst (cross-platform install)
+]
+"src/dashboard/reporting/report_data_export.py" = [
+    "BLE001", # Defensive exception handling for reactive data access
+    "DTZ011", # datetime.date.today() is intentional for local report metadata
+]
+"src/dashboard/reporting/report_plot_export.py" = [
+    "BLE001", # Error recovery in SVG plot generation (intentional)
+]
+"src/utils/get_data_ETFs.py" = [
+    "N999",   # Allow UPPERCASE acronyms in module name (project convention)
+    "G004",   # Allow f-strings in logging (loguru supports it)
+    "BLE001", # Allow catching blind Exception (defensive error handling for ETF data fetching)
+    "DTZ005", # datetime.now() without tz is acceptable for local timestamps in data files
+]
+"src/utils/data_utils/get_data_ETFs.py" = [
+    "N999",   # Allow UPPERCASE acronyms in module name (project convention)
+    "G004",   # Allow f-strings in logging (loguru supports it)
+    "BLE001", # Allow catching blind Exception (defensive error handling for ETF data fetching)
+    "DTZ005", # datetime.now() without tz is acceptable for local timestamps in data files
+]
+"src/utils/data_utils/utils_data_financial.py" = [
+    "N801",   # Allow snake_case class names (project convention: snake_case with UPPERCASE acronyms)
+]
+"src/utils/data_utils/generate_data.py" = [
+    "NPY002", # Allow legacy numpy random API for data generation
+]
+"scripts/*" = [
+    "T201",   # print is fine in scripts
+    "D",      # Docstrings optional in scripts
+    "INP001", # Scripts don't need __init__.py
+]
+"examples/*" = [
+    "T201",   # print is fine in examples
+    "D",      # Docstrings optional in examples
+]
+"notebooks/*" = [
+    "T201",   # print is fine in notebooks
+    "E402",   # Imports not at top (notebook cells)
+    "F401",   # Unused imports (exploratory)
+]
+"src/utils/custom_exceptions_errors_loggers/*" = [
+    "N801",   # Allow CamelCase_with_underscores for class names (project convention)
+    "N803",   # Allow enable_JSON argument name (acronym convention)
+    "N818",   # Allow Exception_ prefix instead of Error suffix (project convention)
+    "BLE001", # Allow catching blind Exception (intentional for safe error suppression)
+    "S110",   # Allow try-except-pass (intentional for graceful degradation)
+    "PLW0603",# Allow global statement (necessary for module state tracking)
+    "PLC0415",# Allow imports not at top-level (conditional imports for platform-specific code)
+    "TC003",  # Allow standard library imports outside TYPE_CHECKING (needed at runtime)
+    "G004",   # Allow f-strings in logging (loguru supports it)
+    "D401",   # Allow non-imperative mood docstrings (acceptable variance)
+]
+"src/portfolios/portfolio_QWIM.py" = [
+    "N801",   # Allow CamelCase_with_underscores for class names (project convention)
+    "N999",   # Allow UPPERCASE acronyms in module name (project convention)
+    "DTZ005", # Timezone-naive datetime.now() acceptable for default date generation
+    "DTZ007", # Naive datetime.strptime() acceptable for date parsing
+    "ARG002", # Unused 'normalize' parameter kept for API compatibility
+    "RUF005", # List concatenation style preference (readability)
+    "TC003",  # Callable needed at runtime for type validation, not just type checking
+]
+"src/portfolios/utils_portfolio.py" = [
+    "G004",   # Allow f-strings in logging (standard logging module, descriptive messages)
+    "BLE001", # Blind exception catching for date parsing fallbacks (intentional)
+    "PLC0415",# Conditional datetime import for date parsing (intentional)
+    "DTZ007", # Naive datetime.strptime() for date parsing (acceptable)
+    "S311",   # Standard random for benchmark generation (not cryptographic)
+    "RUF005", # List concatenation style preference (readability)
+    "FBT003", # Boolean positional in matplotlib API (standard usage)
+]
+"src/models/portfolio_optimization/pkg_skfolio.py" = [
+    "N801",   # Allow lowercase class names with underscores (matches project portfolio_QWIM pattern)
+    "N803",   # Allow lowercase arguments with acronyms
+]
+"src/models/portfolio_optimization/utils_portfolio_optimization.py" = [
+    "N801",   # Allow snake_case_with_underscores for class names (project convention: portfolio_optimization_type)
+]
+"src/models/portfolio_optimization/pkg_optimalportfolios.py" = [
+    "N801",   # Allow snake_case_with_underscores for class names (project convention)
+]
+"src/models/portfolio_optimization/pkg_azapy.py" = [
+    "N801",   # Allow snake_case_with_underscores for class names (project convention)
+]
+"src/products/annuity/*.py" = [
+    "N801",   # Allow CamelCase_with_underscores for class names (project convention)
+    "N803",   # Allow UPPERCASE acronyms in argument names (rate_COLA, has_GMDB, etc.)
+    "N999",   # Allow UPPERCASE acronyms in module names (annuity_SPIA, annuity_DIA, etc.)
+    "G004",   # Allow f-strings in logging (loguru supports it)
+    "BLE001", # Blind exception catching for error recovery (intentional)
+    "ARG002", # Unused method arguments (obj_scenarios, obj_inflation) for API compatibility
+]
+"src/num_methods/scenarios/*.py" = [
+    "N801",   # Allow snake_case_with_underscores for class names (Scenarios_Base, Scenario_Data_Type, etc.)
+    "N999",   # Allow UPPERCASE acronyms in module names (scenarios_CMA)
+]
+"src/num_methods/covariance/*.py" = [
+    "N801",   # Allow snake_case_with_underscores for class names (covariance_matrix, covariance_estimator, etc.)
+    "G004",   # Allow f-strings in logging (loguru-compatible logger)
+]
+"src/models/discounting/*.py" = [
+    "N801",   # Allow snake_case_with_underscores for class names (Discounting_Model_Base, etc.)
+]
+"src/utils/dates_times_utils/*.py" = [
+    "N801",   # Allow snake_case_with_underscores for class names (Daycount_Convention, etc.)
+]
+
+# isort configuration
+[tool.ruff.lint.isort]
+known-first-party = ["src", "dashboard", "tests"]
+known-third-party = ["polars", "plotly", "shiny", "pydantic", "pytest"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+combine-as-imports = true
+force-wrap-aliases = true
+split-on-trailing-comma = true
+lines-after-imports = 2
+lines-between-types = 1
+forced-separate = ["tests"]
+relative-imports-order = "closest-to-furthest"
+
+# pydocstyle configuration
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+# flake8-quotes configuration
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "double"
+multiline-quotes = "double"
+
+# flake8-type-checking configuration
+[tool.ruff.lint.flake8-type-checking]
+strict = true
+runtime-evaluated-base-classes = ["pydantic.BaseModel"]
+runtime-evaluated-decorators = ["pydantic.validate_call"]
+
+# flake8-pytest-style configuration
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = true
+mark-parentheses = true
+parametrize-names-type = "tuple"
+parametrize-values-type = "list"
+
+# flake8-tidy-imports configuration
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "parents"
+
+# flake8-import-conventions
+[tool.ruff.lint.flake8-import-conventions.aliases]
+"polars" = "pl"
+"numpy" = "np"
+"pandas" = "pd"
+"plotly.express" = "px"
+"plotly.graph_objects" = "go"
+
+# pylint configuration
+[tool.ruff.lint.pylint]
+max-args = 8
+max-branches = 15
+max-returns = 6
+max-statements = 50
+max-public-methods = 25
+allow-magic-value-types = ["int", "str", "bytes"]
+
+# Formatting configuration
+[tool.ruff.format]
+# Like Black, use double quotes for strings
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs
+indent-style = "space"
+
+# Like Black, respect magic trailing commas
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending
+line-ending = "auto"
+
+# Enable reformatting of code snippets in docstrings
+docstring-code-format = true
+
+# Use same line length for docstring code snippets
+docstring-code-line-length = "dynamic"
+
+# Exclude files from formatting
+exclude = ["*.pyi"]
+
+# ==============================================================================
+# UV - Package Management Configuration
+# ==============================================================================
+[tool.uv]
+# Package version constraints
+constraint-dependencies = [
+    "kaleido!=0.2.1.post1",  # Known buggy version
+]
+
+# Default Python version for virtual environments
+python-preference = "managed"
+
+# Enable dependency caching
+cache-dir = ".uv_cache"
+
+# Package index configuration
+index-url = "https://pypi.org/simple"
+extra-index-url = []
+
+# Install options
+reinstall = false
+upgrade = false
+
+# Resolver settings
+resolution = "highest"
+prerelease = "if-necessary-or-explicit"   #"disallow"
+
+# Environment settings
+native-tls = true
+
+# Exclude packages from dependency resolution
+override-dependencies = []
+
+[tool.uv.pip]
+# Compile bytecode during installation for faster imports
+compile-bytecode = true
+
+# Verify package hashes
+require-hashes = false
+
+# Allow installation of pre-release versions (when explicitly requested)
+# prerelease = "explicit"
+
+# Strict mode for dependency resolution
+strict = false
+
+# System site-packages access
+system = false
+
+# ==============================================================================
+# TY - Type Checking Configuration (Red Knot / ty)
+# ==============================================================================
+[tool.ty]
+# ty configuration: https://github.com/astral-sh/ty
+
+[tool.ty.environment]
+# Python version for type checking
+python-version = "3.12"
+
+[tool.ty.rules]
+# Core type checking rules
+# Note: ty doesn't support aenum's Enum, so some warnings are expected when using aenum
+# Also sys.stdout.reconfigure() is runtime-only and ty lacks stubs for it
+
+# Ignore these for modules using aenum or runtime-specific features:
+unsupported-base = "ignore"  # aenum.Enum isn't recognized
+call-non-callable = "ignore"  # sys.stdout.reconfigure() is runtime-only
+invalid-assignment = "ignore"  # aenum auto() values aren't recognized
+invalid-parameter-default = "ignore"  # aenum auto() defaults
+invalid-argument-type = "ignore"  # aenum enum members
+possibly-missing-attribute = "ignore"  # aenum .value access isn't recognized
+invalid-return-type = "ignore"         # aenum enum members in list returns aren't fully typed
+unused-type-ignore-comment = "ignore"  # pyright-targeted type: ignore comments are needed for pyright even if ty doesn't see errors
+
+# Keep enabled for general type safety
+unresolved-import = "warn"
+division-by-zero = "error"
+
+# ==============================================================================
+# PYREFLY Configuration
+# ==============================================================================
+
+[tool.pyrefly]
+# pyrefly type checker: https://github.com/facebook/pyrefly
+# The project uses ``src.`` prefix imports so the project root must be on
+# the search path, not just ``src/`` which pyrefly infers by default.
+search_path = ["."]
+
+# ==============================================================================
+# PREK - Pre-commit Procedures Configuration
+# ==============================================================================
+# NOTE: "prek" is not a standard Python package. If you meant "pre-commit",
+# it uses .pre-commit-config.yaml instead of pyproject.toml sections.
+# Below is a placeholder for custom pre-commit-like tool configuration.
+# Consider using: https://pre-commit.com/ with a .pre-commit-config.yaml file
+
+[tool.prek]
+# Placeholder for custom pre-commit procedures
+# Replace with actual configuration if "prek" is a custom/internal tool
+
+# Enable/disable pre-commit hooks
+enabled = true
+
+# Hooks to run before commits
+hooks = [
+    "ruff-check",      # Run ruff linting
+    "ruff-format",     # Run ruff formatting
+    "ty-check",        # Run type checking
+    "pytest-unit",     # Run unit tests
+]
+
+# Files to check
+include = ["*.py"]
+exclude = [".venv/*", "build/*", "dist/*"]
+
+# Fail-fast: stop on first error
+fail-fast = false
+
+# Verbose output
+verbose = false
+
+# Auto-fix issues when possible
+auto-fix = false
+
+# Skip hooks for certain commit messages (regex patterns)
+skip-on-commit-msg = [
+    "^WIP:",           # Work in progress
+    "^FIXUP:",         # Fixup commits
+    "^\\[skip ci\\]",  # Skip CI marker
+]

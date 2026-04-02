@@ -1,0 +1,116 @@
+# JSON Schema — enables IDE completion and validation (VS Code TOML extension, etc.)
+"$schema" = "https://prek.j178.dev/docs/prek.schema.json"
+
+# ─── Global settings ──────────────────────────────────────────────────────────
+# Require at least this prek version (prek-only key; pre-commit uses minimum_pre_commit_version).
+minimum_prek_version = "0.3.3"
+
+# Python version used by hooks that don't specify their own language_version.
+default_language_version.python = "3.12"
+
+# Git hook types installed by `prek install`.  Add "pre-push" here if you want
+# slow hooks (e.g. type-checking) to run only on push rather than every commit.
+default_install_hook_types = ["pre-commit"]
+
+# Do not abort on first failure — let every hook report its findings.
+fail_fast = false
+
+# Global file exclusions (prek-only glob syntax).
+# Hooks will never see these paths regardless of their own filters.
+exclude = { glob = [
+  ".venv/**",
+  "**/__pycache__/**",
+  "**/*.egg-info/**",
+  "**/dist/**",
+  "**/build/**",
+  "logs/**",
+  "outputs/**",
+] }
+
+# ─── Built-in hooks (Rust-native, offline, zero-setup) ────────────────────────
+# repo: builtin is a prek-only extension — no git clone, no Python env.
+# Hooks are grouped by priority; hooks sharing a priority run in parallel.
+[[repos]]
+repo = "builtin"
+hooks = [
+  # ── Priority 0: file fixers ─────────────────────────────────────────────────
+  # These mutate files; run first so subsequent validators see clean content.
+  { id = "end-of-file-fixer",       priority = 0 },
+  { id = "trailing-whitespace",     priority = 0 },
+  { id = "mixed-line-ending",       priority = 0, args = ["--fix=lf"] },
+  { id = "fix-byte-order-marker",   priority = 0 },
+
+  # ── Priority 10: read-only validators (parallel) ────────────────────────────
+  { id = "check-added-large-files", priority = 10, args = ["--maxkb=2048"] },
+  { id = "check-case-conflict",     priority = 10 },
+  { id = "check-json",              priority = 10 },
+  { id = "check-toml",              priority = 10 },
+  { id = "check-yaml",              priority = 10 },
+  { id = "check-xml",               priority = 10 },
+  { id = "check-merge-conflict",    priority = 10 },
+  { id = "check-symlinks",          priority = 10 },
+  { id = "detect-private-key",      priority = 10 },
+
+  # ── Priority 10: branch protection ──────────────────────────────────────────
+  # Prevent direct commits to main / master.
+  {
+    id       = "no-commit-to-branch",
+    priority = 10,
+    args     = ["--branch=main", "--branch=master"],
+  },
+]
+
+# ─── Local hooks — Python tooling ─────────────────────────────────────────────
+# language = "system" means prek invokes the command that is already on PATH
+# (i.e. whatever is active in the project's virtual environment).
+# All tool configuration is read from pyproject.toml automatically.
+[[repos]]
+repo = "local"
+hooks = [
+  # ── Priority 0: code formatter ───────────────────────────────────────────────
+  # Run together with file fixers (modifies different byte ranges of .py files).
+  {
+    id             = "ruff-format",
+    name           = "ruff format",
+    language       = "system",
+    entry          = "ruff format",
+    types          = ["python"],
+    priority       = 0,
+  },
+
+  # ── Priority 20: code linter ─────────────────────────────────────────────────
+  # Run after formatting so ruff-check sees already-formatted code.
+  {
+    id             = "ruff-check",
+    name           = "ruff check",
+    language       = "system",
+    entry          = "ruff check --fix",
+    types          = ["python"],
+    priority       = 20,
+  },
+
+  # ── Priority 30: type checker ────────────────────────────────────────────────
+  # ty (Astral) — checks the whole project at once; does not accept filenames.
+  # Move to pre-push stage if this becomes too slow for per-commit use:
+  #   stages = ["pre-push"]
+  {
+    id             = "ty-check",
+    name           = "ty check",
+    language       = "system",
+    entry          = "ty check",
+    types          = ["python"],
+    pass_filenames = false,
+    always_run     = true,
+    priority       = 30,
+  },
+]
+
+# ─── Meta hooks — config self-validation ──────────────────────────────────────
+[[repos]]
+repo = "meta"
+hooks = [
+  # Warn if a hook's `files` / `exclude` pattern never matches any committed file.
+  { id = "check-hooks-apply",     priority = 40 },
+  # Warn if a global `exclude` pattern is redundant (already excluded everywhere).
+  { id = "check-useless-excludes", priority = 40 },
+]
