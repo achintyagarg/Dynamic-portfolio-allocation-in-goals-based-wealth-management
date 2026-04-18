@@ -1543,12 +1543,16 @@ def get_value_from_shiny_input_numeric(input_reactive_object: Any) -> float:
     elif isinstance(raw_value, str):
         try:
             # Extract numeric value from formatted currency string
+            # Strip currency symbols, commas, and any trailing non-numeric chars
+            # (e.g. "15---" produced by rapid UI interaction)
+            import re as _re
             cleaned_value = raw_value.replace("$", "").replace(",", "").strip()
+            # Keep only a valid float pattern: optional sign, digits, optional decimal
+            match = _re.match(r"^-?\d*\.?\d*", cleaned_value)
+            cleaned_value = match.group(0) if match else ""
 
-            if not cleaned_value:
-                raise ValueError(
-                    f"Numeric input '{reactive_input_identifier}' is empty or contains only formatting characters",
-                )
+            if not cleaned_value or cleaned_value in ("-", "."):
+                return 0.0
 
             numeric_value = float(cleaned_value)
 

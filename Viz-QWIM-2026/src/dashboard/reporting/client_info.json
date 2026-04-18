@@ -1,90 +1,90 @@
 {
-  "single_or_couple": "Single",
+  "single_or_couple": "Couple",
   "personal_info": {
     "primary": {
-      "name": "Primary Investor",
-      "age_current": 0,
-      "age_retirement": 0,
-      "age_income_starting": 0,
-      "status_marital": "",
-      "gender": "",
-      "tolerance_risk": "",
-      "state": "",
-      "code_zip": ""
+      "name": "Alex Chen",
+      "age_current": 42,
+      "age_retirement": 65,
+      "age_income_starting": 65,
+      "status_marital": "Married",
+      "gender": "Male",
+      "tolerance_risk": "Moderate",
+      "state": "NY",
+      "code_zip": "10001"
     },
     "partner": {
-      "name": "Partner Investor",
-      "age_current": 0,
-      "age_retirement": 0,
-      "age_income_starting": 0,
-      "status_marital": "",
-      "gender": "",
-      "tolerance_risk": "",
-      "state": "",
-      "code_zip": ""
+      "name": "Jordan Chen",
+      "age_current": 40,
+      "age_retirement": 63,
+      "age_income_starting": 63,
+      "status_marital": "Married",
+      "gender": "Female",
+      "tolerance_risk": "Moderate",
+      "state": "NY",
+      "code_zip": "10001"
     }
   },
   "assets": {
     "primary": {
-      "taxable": 0.0,
-      "tax_deferred": 0.0,
-      "tax_free": 0.0,
-      "total": 0.0
+      "taxable": 85000.0,
+      "tax_deferred": 145000.0,
+      "tax_free": 35000.0,
+      "total": 265000.0
     },
     "partner": {
-      "taxable": 0.0,
-      "tax_deferred": 0.0,
-      "tax_free": 0.0,
-      "total": 0.0
+      "taxable": 40000.0,
+      "tax_deferred": 98000.0,
+      "tax_free": 22000.0,
+      "total": 160000.0
     },
     "combined": {
-      "taxable": 0.0,
-      "tax_deferred": 0.0,
-      "tax_free": 0.0,
-      "total": 0.0
+      "taxable": 125000.0,
+      "tax_deferred": 243000.0,
+      "tax_free": 57000.0,
+      "total": 425000.0
     }
   },
   "goals": {
     "primary": {
-      "essential": 0.0,
-      "important": 0.0,
-      "aspirational": 0.0,
-      "total": 0.0
+      "essential": 1200000.0,
+      "important": 150000.0,
+      "aspirational": 300000.0,
+      "total": 1650000.0
     },
     "partner": {
-      "essential": 0.0,
-      "important": 0.0,
-      "aspirational": 0.0,
-      "total": 0.0
+      "essential": 900000.0,
+      "important": 100000.0,
+      "aspirational": 200000.0,
+      "total": 1200000.0
     },
     "combined": {
-      "essential": 0.0,
-      "important": 0.0,
-      "aspirational": 0.0,
-      "total": 0.0
+      "essential": 1500000.0,
+      "important": 200000.0,
+      "aspirational": 350000.0,
+      "total": 2050000.0
     }
   },
   "income": {
     "primary": {
-      "social_security": 0.0,
-      "pension": 0.0,
+      "social_security": 22000.0,
+      "pension": 8000.0,
       "annuity_existing": 0.0,
       "other": 0.0,
-      "total": 0.0
+      "total": 30000.0
     },
     "partner": {
-      "social_security": 0.0,
+      "social_security": 18000.0,
       "pension": 0.0,
       "annuity_existing": 0.0,
-      "other": 0.0,
-      "total": 0.0
+      "other": 5000.0,
+      "total": 23000.0
     },
     "combined": {
-      "social_security": 0.0,
-      "pension": 0.0,
+      "social_security": 40000.0,
+      "pension": 8000.0,
       "annuity_existing": 0.0,
-      "other": 0.0,
-      "total": 0.0
+      "other": 5000.0,
+      "total": 53000.0
     }
   }
 }

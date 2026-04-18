@@ -484,23 +484,34 @@ def subtab_portfolios_analysis_server(
 
             if time_period != "custom":
                 today_datetime = datetime.now(UTC)
-                today_str = today_datetime.strftime("%Y-%m-%d")
+                # Anchor to last available data date so the label matches the filter
+                _dp, _ = get_filtered_analysis_data() if False else (None, None)
+                _anchor = today_datetime
+                try:
+                    _raw = data_inputs.get("My_Portfolio") or data_inputs.get("Benchmark_Portfolio")
+                    if _raw is not None and not _raw.is_empty() and "Date" in _raw.columns:
+                        _mx = _raw.select(pl.col("Date").max()).item()
+                        if isinstance(_mx, str):
+                            _anchor = datetime.strptime(_mx[:10], "%Y-%m-%d").replace(tzinfo=UTC)
+                except Exception:
+                    pass
+                anchor_str = _anchor.strftime("%Y-%m-%d")
 
                 if time_period == "1y":
-                    start_date_datetime = today_datetime - timedelta(days=365)
+                    start_date_datetime = _anchor - timedelta(days=365)
                 elif time_period == "3y":
-                    start_date_datetime = today_datetime - timedelta(days=365 * 3)
+                    start_date_datetime = _anchor - timedelta(days=365 * 3)
                 elif time_period == "5y":
-                    start_date_datetime = today_datetime - timedelta(days=365 * 5)
+                    start_date_datetime = _anchor - timedelta(days=365 * 5)
                 elif time_period == "10y":
-                    start_date_datetime = today_datetime - timedelta(days=365 * 10)
+                    start_date_datetime = _anchor - timedelta(days=365 * 10)
                 elif time_period == "ytd":
-                    start_date_datetime = datetime(today_datetime.year, 1, 1, tzinfo=UTC)
+                    start_date_datetime = datetime(_anchor.year, 1, 1, tzinfo=UTC)
                 else:
-                    start_date_datetime = today_datetime - timedelta(days=365)
+                    start_date_datetime = _anchor - timedelta(days=365)
 
                 start_date_str = start_date_datetime.strftime("%Y-%m-%d")
-                return f"📅 {start_date_str} to {today_str}"
+                return f"📅 {start_date_str} to {anchor_str}"
             return ""
         except Exception as exc:
             raise RuntimeError(f"Error displaying calculated date range: {exc}")
@@ -637,6 +648,20 @@ def subtab_portfolios_analysis_server(
             today_datetime = datetime.now(UTC)
             today_str = today_datetime.strftime("%Y-%m-%d")
 
+            # Anchor end date to the last available data date (not today) so that
+            # "Last 1 Year" etc. work correctly when the data hasn't been updated recently.
+            _anchor_end = today_datetime
+            if data_portfolio is not None and not data_portfolio.is_empty() and "Date" in data_portfolio.columns:
+                try:
+                    _max_date_str = data_portfolio.select(pl.col("Date").max()).item()
+                    if isinstance(_max_date_str, str):
+                        _max_date_str = _max_date_str[:10]  # "YYYY-MM-DD"
+                        from datetime import date as _date
+                        _anchor_end = datetime.strptime(_max_date_str, "%Y-%m-%d").replace(tzinfo=UTC)
+                except Exception:
+                    pass
+            anchor_end_str = _anchor_end.strftime("%Y-%m-%d")
+
             # DEBUG: Log original data availability before filtering
             print(f"\n{'=' * 60}")
             print("🔍 DEBUG: Date Filtering Analysis")
@@ -736,35 +761,35 @@ def subtab_portfolios_analysis_server(
                     end_date_str = today_str
 
             elif time_period == "1y":
-                # Last 1 year calculation (365 days)
-                start_date_datetime = today_datetime - timedelta(days=365)
+                # Last 1 year relative to last available data date
+                start_date_datetime = _anchor_end - timedelta(days=365)
                 start_date_str = start_date_datetime.strftime("%Y-%m-%d")
-                end_date_str = today_str
+                end_date_str = anchor_end_str
             elif time_period == "3y":
-                # Last 3 years calculation (1095 days)
-                start_date_datetime = today_datetime - timedelta(days=365 * 3)
+                # Last 3 years relative to last available data date
+                start_date_datetime = _anchor_end - timedelta(days=365 * 3)
                 start_date_str = start_date_datetime.strftime("%Y-%m-%d")
-                end_date_str = today_str
+                end_date_str = anchor_end_str
             elif time_period == "5y":
-                # Last 5 years calculation (1825 days)
-                start_date_datetime = today_datetime - timedelta(days=365 * 5)
+                # Last 5 years relative to last available data date
+                start_date_datetime = _anchor_end - timedelta(days=365 * 5)
                 start_date_str = start_date_datetime.strftime("%Y-%m-%d")
-                end_date_str = today_str
+                end_date_str = anchor_end_str
             elif time_period == "10y":
-                # Last 10 years calculation (3650 days)
-                start_date_datetime = today_datetime - timedelta(days=365 * 10)
+                # Last 10 years relative to last available data date
+                start_date_datetime = _anchor_end - timedelta(days=365 * 10)
                 start_date_str = start_date_datetime.strftime("%Y-%m-%d")
-                end_date_str = today_str
+                end_date_str = anchor_end_str
             elif time_period == "ytd":
-                # Year-to-date calculation (January 1st to current date)
-                year_start_datetime = datetime(today_datetime.year, 1, 1, tzinfo=UTC)
+                # Year-to-date relative to last available data date
+                year_start_datetime = datetime(_anchor_end.year, 1, 1, tzinfo=UTC)
                 start_date_str = year_start_datetime.strftime("%Y-%m-%d")
-                end_date_str = today_str
+                end_date_str = anchor_end_str
             else:
-                # Configuration validation - default to 1 year for invalid selections
-                start_date_datetime = today_datetime - timedelta(days=365)
+                # Default to 1 year relative to last available data date
+                start_date_datetime = _anchor_end - timedelta(days=365)
                 start_date_str = start_date_datetime.strftime("%Y-%m-%d")
-                end_date_str = today_str
+                end_date_str = anchor_end_str
 
             print("\n📅 Filter Date Range:")
             print(f"   - Start: {start_date_str}")

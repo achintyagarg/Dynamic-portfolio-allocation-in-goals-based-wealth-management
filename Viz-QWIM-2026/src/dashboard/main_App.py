@@ -569,6 +569,22 @@ from src.dashboard.shiny_tab_results.tab_results import (
     tab_results_server,
     tab_results_ui,
 )
+from src.dashboard.shiny_tab_data_explorer.tab_data_explorer import (
+    tab_data_explorer_server,
+    tab_data_explorer_ui,
+)
+from src.dashboard.shiny_tab_investor_simulator.tab_investor_simulator import (
+    tab_investor_simulator_server,
+    tab_investor_simulator_ui,
+)
+from src.dashboard.shiny_tab_strategy_comparison.tab_strategy_comparison import (
+    tab_strategy_comparison_server,
+    tab_strategy_comparison_ui,
+)
+from src.dashboard.shiny_tab_rl_efficiency.tab_rl_efficiency import (
+    tab_rl_efficiency_server,
+    tab_rl_efficiency_ui,
+)
 
 
 _logger.debug("Dashboard components imported successfully")
@@ -824,6 +840,39 @@ def create_app_ui() -> Any:
                 data_utils=data_utils,  # Utility functions and configuration
                 data_inputs=data_inputs,
             ),  # Input datasets for results
+        ),
+        # ── RL / GBWM tabs ────────────────────────────────────────────────────
+        ui.nav_panel(
+            "Data Explorer",
+            tab_data_explorer_ui(
+                "ID_tab_data_explorer",
+                data_utils=data_utils,
+                data_inputs=data_inputs,
+            ),
+        ),
+        ui.nav_panel(
+            "Investor Simulator",
+            tab_investor_simulator_ui(
+                "ID_tab_investor_simulator",
+                data_utils=data_utils,
+                data_inputs=data_inputs,
+            ),
+        ),
+        ui.nav_panel(
+            "Strategy Comparison",
+            tab_strategy_comparison_ui(
+                "ID_tab_strategy_comparison",
+                data_utils=data_utils,
+                data_inputs=data_inputs,
+            ),
+        ),
+        ui.nav_panel(
+            "RL Efficiency",
+            tab_rl_efficiency_ui(
+                "ID_tab_rl_efficiency",
+                data_utils=data_utils,
+                data_inputs=data_inputs,
+            ),
         ),
         # Navigation spacer to push subsequent elements to the right
         # Creates proper visual separation between main content and utility buttons
@@ -1115,6 +1164,35 @@ def app_server(input: Any, output: Any, session: Any) -> None:  # noqa: A002, AR
         data_inputs=data_inputs,  # Input datasets for results
         reactives_shiny=reactives_shiny,
     )  # Centralized reactive state for coordination
+
+    # Initialize RL / GBWM module servers
+    tab_data_explorer_server(  # pyright: ignore[reportCallIssue]
+        id="ID_tab_data_explorer",
+        data_utils=data_utils,
+        data_inputs=data_inputs,
+        reactives_shiny=reactives_shiny,
+    )
+
+    tab_investor_simulator_server(  # pyright: ignore[reportCallIssue]
+        id="ID_tab_investor_simulator",
+        data_utils=data_utils,
+        data_inputs=data_inputs,
+        reactives_shiny=reactives_shiny,
+    )
+
+    tab_strategy_comparison_server(  # pyright: ignore[reportCallIssue]
+        id="ID_tab_strategy_comparison",
+        data_utils=data_utils,
+        data_inputs=data_inputs,
+        reactives_shiny=reactives_shiny,
+    )
+
+    tab_rl_efficiency_server(  # pyright: ignore[reportCallIssue]
+        id="ID_tab_rl_efficiency",
+        data_utils=data_utils,
+        data_inputs=data_inputs,
+        reactives_shiny=reactives_shiny,
+    )
 
 
 #: Main Shiny application instance combining UI and server functionality
